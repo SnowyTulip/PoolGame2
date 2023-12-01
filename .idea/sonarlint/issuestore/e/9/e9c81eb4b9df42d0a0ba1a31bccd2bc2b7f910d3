@@ -1,7 +1,9 @@
 
 ]
-java:S2184-"BCast one of the operands of this division operation to a "double".(³–ùŠÿÿÿÿÿ
+java:S21841"BCast one of the operands of this division operation to a "double".(³–ùŠÿÿÿÿÿ
 ]
-java:S2184."BCast one of the operands of this division operation to a "double".(éÜžåüÿÿÿÿ
-E	java:S106&"+Replace this use of System.err by a logger.( Ÿƒ²ýÿÿÿÿ
-@	java:S106\"+Replace this use of System.out by a logger.(ÜÑ¥µ
+java:S21842"BCast one of the operands of this division operation to a "double".(éÜžåüÿÿÿÿ
+E	java:S106*"+Replace this use of System.err by a logger.( Ÿƒ²ýÿÿÿÿ
+@	java:S106`"+Replace this use of System.out by a logger.(ÜÑ¥µ
+U
+java:S1128"9Remove this unused import 'PoolGame.Config.Configurable'.(þÜŠx8³½Ñ¬Â1

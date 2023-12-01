@@ -1,10 +1,10 @@
 
-Y
-java:S1155">Use isEmpty() to check whether the collection is empty or not.(”ŸÚ¥ùÿÿÿÿ
+`
+java:S1155 ">Use isEmpty() to check whether the collection is empty or not.(”ŸÚ¥ùÿÿÿÿ8ŞĞØ¬Â1
 c
-java:S1075#"ARefactor your code to get this URI from a customizable parameter.(í¬¥úÿÿÿÿ8åÉŒ«Â1
+java:S1075$"ARefactor your code to get this URI from a customizable parameter.(í¬¥úÿÿÿÿ8ßĞØ¬Â1
 ^
-java:S1075$"ARefactor your code to get this URI from a customizable parameter.(¹—Ò8²ñ«Â1
+java:S1075%"ARefactor your code to get this URI from a customizable parameter.(¹—Ò8ßĞØ¬Â1
 s
-java:S3457-"Q%n should be used in place of \n to produce the platform-specific line separator.(£ûŒÒşÿÿÿÿ8ã¦ˆ¡Â1
-E	java:S106-"+Replace this use of System.err by a logger.(£ûŒÒşÿÿÿÿ
+java:S3457."Q%n should be used in place of \n to produce the platform-specific line separator.(£ûŒÒşÿÿÿÿ8àĞØ¬Â1
+L	java:S106."+Replace this use of System.err by a logger.(£ûŒÒşÿÿÿÿ8àĞØ¬Â1

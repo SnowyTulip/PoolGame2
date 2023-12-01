@@ -5,6 +5,8 @@ import java.util.List;
 
 import PoolGame.Builder.BallBuilderDirector;
 import PoolGame.Config.BallConfig;
+import PoolGame.Config.Configurable;
+import PoolGame.Config.GameConfig;
 import PoolGame.Items.Ball;
 import PoolGame.Items.PoolTable;
 import javafx.collections.ObservableList;
@@ -18,17 +20,19 @@ public class Game {
     private boolean shownWonText = false;
     private final Text winText = new Text(50, 50, "Win and Bye");
 
+
+
     /**
      * Initialise the game with the provided config
-     * @param config The config parser to load the config from
+     * @param GameConfig The config parser to load the config from
      */
-    public Game(ConfigReader config) {
-        this.setup(config);
+    public Game(GameConfig GameConfig) {
+        this.setup(GameConfig);
     }
 
-    private void setup(ConfigReader config) {
-        this.table = new PoolTable(config.getConfig().getTableConfig());
-        List<BallConfig> ballsConf = config.getConfig().getBallsConfig().getBallConfigs();
+    private void setup(GameConfig GameConfig) {
+        this.table = new PoolTable(GameConfig.getTableConfig());
+        List<BallConfig> ballsConf = GameConfig.getBallsConfig().getBallConfigs();
         List<Ball> balls = new ArrayList<>();
         BallBuilderDirector builder = new BallBuilderDirector();
         builder.registerDefault();

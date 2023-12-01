@@ -6,6 +6,7 @@ package PoolGame;
 import java.io.IOException;
 import java.util.List;
 
+import PoolGame.Config.GameConfig;
 import PoolGame.Items.Pocket;
 import PoolGame.Items.PoolTable;
 import org.json.simple.parser.ParseException;
@@ -31,7 +32,7 @@ public class App extends Application {
 		if (args.size() > 0) {
 			configPath = args.get(0);
 		} else {
-			 configPath = "src/main/resources/config.json";
+            configPath = "src/main/resources/config.json";
 			configPath = "/config.json";
             configPath = "/config_hard.json";
             isResourcesDir = true;
@@ -58,16 +59,15 @@ public class App extends Application {
         stage.show();
         
         ConfigReader config = loadConfig(getParameters().getRaw());
-        Game game = new Game(config);
+        GameConfig gameConfig = config.getConfig();
+        Game game = new Game(gameConfig);
         
         Canvas canvas = new Canvas(game.getWindowDimX(), game.getWindowDimY());
-
         stage.setWidth(game.getWindowDimX());
         stage.setHeight(game.getWindowDimY() +
                         Pocket.RADIUS +
                         PoolTable.POCKET_OFFSET +
                         4); // Magic number to get bottom to align
-
         root.getChildren().add(canvas);
         // GraphicsContext gc = canvas.getGraphicsContext2D();
         game.addDrawables(root);
