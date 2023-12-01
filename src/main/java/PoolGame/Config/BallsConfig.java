@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 /** A config class that will contain all the ball configuration */
 public class BallsConfig implements Configurable {
@@ -13,7 +14,10 @@ public class BallsConfig implements Configurable {
      * Initialise the instance with the provided JSONArray of ball
      * @param obj A JSONArray containing all the ball configuration
      */
+    // Bug: 这里似乎是助教提供代码处遗留的一个bug,因为读取完balls后还需要再读取ball才可以
+    // FIX :
     public BallsConfig(Object obj) {
+        obj = ((JSONObject)obj).get("ball");
         this.parseJSON(obj);
     }
 

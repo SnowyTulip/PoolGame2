@@ -73,9 +73,12 @@ public class ConfigReader {
 		
 		String requiredKeys[] = {"Table", "Balls"};
 		checkRequiredKey(jsonConfig, requiredKeys);
-		TableConfig table = (TableConfig)registry.create(requiredKeys[0], jsonConfig.get(requiredKeys[0]));
-		BallsConfig balls = (BallsConfig)registry.create(requiredKeys[1], jsonConfig.get(requiredKeys[1]));
-		this.config = new GameConfig(table, balls);
+		// 这里其实也可以直接生成 GameConfig
+		// 但是由于八股下只能强行使用工厂模式,有点刻意，不够优雅
+		 this.config = new GameConfig(jsonConfig);
+//		TableConfig table = (TableConfig)registry.create(requiredKeys[0], jsonConfig.get(requiredKeys[0]));
+//		BallsConfig balls = (BallsConfig)registry.create(requiredKeys[1], jsonConfig.get(requiredKeys[1]));
+//		this.config = new GameConfig(table, balls);
 	}
 
 	private void checkRequiredKey(JSONObject jsonObj, String[] keys) throws ConfigKeyMissingException {

@@ -7,6 +7,7 @@ public class TableConfig implements Configurable {
     private String colour;
     private double friction;
     private SizeConfig size;
+    private PocketsConfig pockets;
 
     /**
      * Initialise a config for table using a JSONObject
@@ -22,11 +23,11 @@ public class TableConfig implements Configurable {
      * @param friction The friction of the table
      * @param sizeConf A size config instance for the size of the table
      */
-    public TableConfig(String colour, double friction, SizeConfig sizeConf) {
-        this.init(colour, friction, sizeConf);
+    public TableConfig(String colour, double friction, SizeConfig sizeConf,PocketsConfig pockets) {
+        this.init(colour, friction, sizeConf,pockets);
     }
 
-    private void init(String colour, double friction, SizeConfig sizeConf) {
+    private void init(String colour, double friction, SizeConfig sizeConf,PocketsConfig pockets) {
         if (!ConfigChecker.colourChecker(colour)) {
             throw new IllegalArgumentException(String.format("\"%s\" is not a valid colour.", colour));
         } else if (friction <= 0) {
@@ -37,6 +38,7 @@ public class TableConfig implements Configurable {
         this.colour = colour;
         this.friction = friction;
         this.size = sizeConf;
+        this.pockets = pockets;
     }
 
     public Configurable parseJSON(Object obj) {
@@ -44,7 +46,8 @@ public class TableConfig implements Configurable {
         String colour = (String)json.get("colour");
         double friction = (double)json.get("friction");
         SizeConfig szConf = new SizeConfig(json.get("size"));
-        this.init(colour, friction, szConf);
+        PocketsConfig pockets = new PocketsConfig(json.get("pockets"));
+        this.init(colour, friction, szConf,pockets);
         return this;
     }
 

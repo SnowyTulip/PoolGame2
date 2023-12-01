@@ -11,20 +11,27 @@ import org.json.simple.JSONObject;
  * @version: 1.0
  */
 public class PocketConfig implements Configurable{
-    private SizeConfig pocketSize;
+    private PositionConfig pocketPosition;
     private double radius;
+
+    public double getRadius() {
+        return radius;
+    }
+    public PositionConfig getPocketPosition(){
+        return pocketPosition;
+    }
 
     public PocketConfig (Object obj) {this.parseJSON(obj);}
 
-    public PocketConfig(SizeConfig pocketSizeConfig,double radius){
-        this.init(pocketSizeConfig,radius);
+    public PocketConfig(PositionConfig pocketPosConfig,double radius){
+        this.init(pocketPosConfig,radius);
     }
-    private void init(SizeConfig pocketSizeConfig,double radius) {
+    private void init(PositionConfig pocketPosConfig,double radius) {
      if (radius <= 0) {
             throw new IllegalArgumentException("radius of ball must be greater than 0");
      }
      this.radius = radius;
-     this.pocketSize = pocketSizeConfig;
+     this.pocketPosition = pocketPosConfig;
 
     }
 
@@ -38,9 +45,9 @@ public class PocketConfig implements Configurable{
     @Override
     public Configurable parseJSON(Object obj) {
         JSONObject json = (JSONObject) obj;
-        SizeConfig sizecfg = new SizeConfig(json.get("position"));
+        PositionConfig positionConfig = new PositionConfig(json.get("position"));
         double radius = (double) json.get("radius");
-        this.init(sizecfg,radius);
+        this.init(positionConfig,radius);
         return null;
     }
 }

@@ -7,6 +7,10 @@ public class GameConfig implements Configurable {
     private TableConfig table;
     private BallsConfig balls;
 
+
+    public GameConfig(Object obj) {
+        parseJSON(obj);
+    }
     /**
      * Initialise the game config with the provided value
      * @param table An instance of the table config

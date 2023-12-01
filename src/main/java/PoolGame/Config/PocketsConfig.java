@@ -38,12 +38,17 @@ public class PocketsConfig implements Configurable{
     @Override
     public Configurable parseJSON(Object obj) {
         List<PocketConfig> list = new ArrayList<>();
-        JSONArray json = (JSONArray) obj;
-
-        for (Object b : json) {
-            list.add(new PocketConfig(b));
+        if (obj != null) {
+            JSONArray json = (JSONArray) obj;
+            for (Object b : json) {
+                list.add(new PocketConfig(b));
+            }
+            this.init(list);
         }
-        this.init(list);
         return null;
+    }
+
+    public List<PocketConfig> getPockets() {
+        return pockets;
     }
 }
