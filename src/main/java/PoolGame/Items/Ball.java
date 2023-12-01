@@ -11,11 +11,20 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Bounds;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
+import javafx.scene.shape.StrokeType;
+
+import static java.lang.Math.sqrt;
 
 /**
  * The ball class for all types of balls.
  */
 public class Ball implements Drawable, Movable {
+
+    private  Line mouseDashLine;
+    private Circle mouseDashshape;
+    private double friction = 1.0;
+    private double g = 9.8;
+    private double hitScale = 0.1;
 
     /** The type of ball */
     public enum BallType {
@@ -26,6 +35,7 @@ public class Ball implements Drawable, Movable {
     };
 
     static final double RADIUS = 15;
+    private final double Friction_Scale = 0.1;
     private final double HIT_FORCE_MULTIPLIER = 0.15;
     private final double MIN_VEL = 0.05;  // Minimum velocity for ball to stop
     private final double MAX_HIT_FORCE_MAG = RADIUS;  // If max vel > radius, vector calculation can be wrong or can miss hitting ball, cause each tick can add > pos of another ball
@@ -59,6 +69,11 @@ public class Ball implements Drawable, Movable {
         this.shape = new Circle(this.originalPos[0], this.originalPos[1], RADIUS);
         this.mouseDragLine = new Line();
         this.mouseDragLine.setVisible(false);
+        //添加预测线
+        this.mouseDashLine = new Line();
+        this.mouseDashLine.setVisible(false);
+        this.mouseDashLine.getStrokeDashArray().addAll(5d,5d);
+        this.mouseDashLine.setFill(Color.color(1,1,1));
         this.setColour(colour);
         this.setXPos(xPos);
         this.setYPos(yPos);
@@ -79,6 +94,10 @@ public class Ball implements Drawable, Movable {
         this.shape = new Circle(this.originalPos[0], this.originalPos[1], RADIUS);
         this.mouseDragLine = new Line();
         this.mouseDragLine.setVisible(false);
+        this.mouseDashLine = new Line();
+        this.mouseDashLine.setVisible(false);
+        this.mouseDashLine.getStrokeDashArray().addAll(5d,5d);
+        this.mouseDashLine.setFill(Color.color(1,1,1));
     }
 
     /**
@@ -192,6 +211,8 @@ public class Ball implements Drawable, Movable {
     public void addToGroup(ObservableList<Node> groupChildren) {
         groupChildren.add(this.shape);
         groupChildren.add(this.mouseDragLine);
+        groupChildren.add(this.mouseDashLine);
+        this.genDashBall(groupChildren);
     }
 
     public void setXVel(double xVel) {
@@ -321,7 +342,26 @@ public class Ball implements Drawable, Movable {
         this.resetVelocity();
         this.fallCounter = 0;
     }
+    private void genDashBall(ObservableList<Node> group){
+        this.mouseDashshape = new Circle(0,0,RADIUS);
+        this.mouseDashshape.setStrokeType(StrokeType.CENTERED);
+        this.mouseDashshape.setStrokeWidth(2);
+        this.mouseDashshape.getStrokeDashArray().addAll(5d, 5d); // 设置虚线样式
+        this.mouseDashshape.setFill(Color.TRANSPARENT);
+        this.mouseDashshape.setStroke(Color.WHITE);
+        this.mouseDashshape.setVisible(false);
+        group.add(this.mouseDashshape);
+    }
+    /**
+     * 缩放        Vx' = Vx / Max(Vel**0.5 , 1)
+     * @param Vel 总体速度 Vel = sqrt(Vx*Vx + Vy*Vy)
+     * @param Vx  X方向速度
+     * @return    缩放后的Vx‘
+     */
+    public double scaleVel(double Vel,double Vx){
 
+        return Vx/ Math.max(Math.pow(Vel,0.5),1);
+    }
     /**
      * Register the ball with the actions that is associated with the cue ball.
      */
@@ -334,6 +374,26 @@ public class Ball implements Drawable, Movable {
                     this.mouseDragLine.setStartY(this.shape.getCenterY());
                     this.mouseDragLine.setEndX(actionEvent.getSceneX());
                     this.mouseDragLine.setEndY(actionEvent.getSceneY());
+                    //计算球会在何处停下
+                    double Vx = (this.shape.getCenterX() - actionEvent.getSceneX()) * hitScale;
+                    double Vy = (this.shape.getCenterY() - actionEvent.getSceneY()) * hitScale;
+                    double V  = Math.sqrt(Vx*Vx + Vy*Vy);
+                    // 缩放
+                    Vx = scaleVel(V,Vx);
+                    Vy = scaleVel(V,Vy);
+                    V  = Math.sqrt(Vx*Vx + Vy*Vy);
+                    // V^2 = 2 * a * X
+                    double Dx = Vx * V / (2 * friction * 0.1);
+                    double Dy = Vy * V / (2 * friction * 0.1);
+                    this.mouseDashLine.setStartX(this.shape.getCenterX());
+                    this.mouseDashLine.setStartY(this.shape.getCenterY());
+                    this.mouseDashLine.setEndX(this.shape.getCenterX() + Dx);
+                    this.mouseDashLine.setEndY(this.shape.getCenterY() + Dy);
+                    this.mouseDashLine.setVisible(true);
+
+                    this.mouseDashshape.setVisible(true);
+                    this.mouseDashshape.setCenterX(this.shape.getCenterX() + Dx);
+                    this.mouseDashshape.setCenterY(this.shape.getCenterY() + Dy);
                 }
             }
         );
@@ -341,10 +401,17 @@ public class Ball implements Drawable, Movable {
             (actionEvent) -> {
                 if (this.hasStopped()) {
                     this.mouseDragLine.setVisible(false);
-                    Point2D vec = calculateCueBallVelOnHit(actionEvent.getSceneX(), actionEvent.getSceneY());
-                    // System.out.printf("%f, %f\n", vec.getX(), vec.getY());
-                    this.setXVel(vec.getX());
-                    this.setYVel(vec.getY());
+                    double Vx = (this.shape.getCenterX() - actionEvent.getSceneX()) * hitScale;
+                    double Vy = (this.shape.getCenterY() - actionEvent.getSceneY()) * hitScale;
+                    double V  = Math.sqrt(Vx*Vx + Vy*Vy);
+                    // 缩放
+                    Vx = scaleVel(V,Vx);
+                    Vy = scaleVel(V,Vy);
+                    V  = Math.sqrt(Vx*Vx + Vy*Vy);
+                    setXVel(Vx);
+                    setYVel(Vy);
+                    this.mouseDashshape.setVisible(false);
+                    this.mouseDashLine.setVisible(false);
                 }
             }
         );
@@ -448,22 +515,39 @@ public class Ball implements Drawable, Movable {
      * @param friction The friction multiplier, 0 is no friction, 1 is max friction.
      */
     public void applyFriction(double friction) {
-        double xVel = this.getXVel();
-        double yVel = this.getYVel();
-        if (Math.abs(xVel) + Math.abs(yVel) <= MIN_VEL) {
-            this.setXVel(0);
-            this.setYVel(0);
-        } else {
-            double xVelLoss = xVel * friction;
-            this.setXVel(xVel - xVelLoss);
-            double yVelLoss = yVel * friction;
-            this.setYVel(yVel - yVelLoss);
-        }
-        // if (this.type == BallType.CUEBALL) {
-        //     if (xVel != 0 || yVel != 0) {
-        //         System.out.printf("%f, %f\n", this.getXVel(), this.getYVel());
-        //     }
-        // }
+        // 下面注释掉的代码符合物理学？
+        // 摩擦力减小速度是直接对x y方向上直接减少？？
+//        double xVel = this.getXVel();
+//        double yVel = this.getYVel();
+//        if (Math.abs(xVel) + Math.abs(yVel) <= MIN_VEL) {
+//            this.setXVel(0);
+//            this.setYVel(0);
+//        } else {
+//            double xVelLoss = xVel * friction;
+//            this.setXVel(xVel - xVelLoss);
+//            double yVelLoss = yVel * friction;
+//            this.setYVel(yVel - yVelLoss);
+//        }
+        //end
+
+        this.friction = friction;
+        double dt = 1;
+        double Ff = this.friction * mass * Friction_Scale;//ignore g
+        double fVelX = this.getXVel(), fVelY = this.getYVel();
+        double V = sqrt(fVelX*fVelX + fVelY*fVelY);
+        //当速度为0的时候应当不做任何处理返回
+        //注意,速度可以小于0,因为矢量表示
+        if(V == 0)return;
+        double Fx = Ff * fVelX / V;
+        double Fy = Ff * fVelY / V;
+        // V' = V - a*t
+        double newVelX = fVelX - (Fx / mass) * dt;
+        double newVelY = fVelY - (Fy / mass) * dt;
+        // if next tick is zero,just stop it,中英混用
+        fVelX = newVelX * fVelX <= 0 ? 0 : newVelX;
+        fVelY = newVelY * fVelY <= 0 ? 0 : newVelY;
+        this.setXVel(fVelX);
+        this.setYVel(fVelY);
     }
 
     /**

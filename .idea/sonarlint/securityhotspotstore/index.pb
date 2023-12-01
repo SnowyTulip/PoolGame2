@@ -111,3 +111,7 @@ G.idea/sonarlint/issuestore/1/b/1b1176e763a661805e4b0ea1b881d84e0ee90807,3\8\38
 Q.idea/sonarlint/securityhotspotstore/b/e/be75e249d5ae6d9debe436b6ab4639882299a7a0,1\e\1ead907e6899f87a0a212351cd11a8ac051aba4b
 Å
 Q.idea/sonarlint/securityhotspotstore/e/9/e9c81eb4b9df42d0a0ba1a31bccd2bc2b7f910d3,5\0\50ec05eb2ac6718f2aa2074efec17bd579c2d17e
+_
+/src/main/java/PoolGame/Config/PocketConfig.java,0\3\038187c97d99a4680b48da989ce34a37823b55fa
+`
+0src/main/java/PoolGame/Config/PocketsConfig.java,a\6\a632ea5b37ee4cf193b789e3defc6778c630caaa

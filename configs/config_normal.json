@@ -1,10 +1,10 @@
 {
   "Table": {
     "colour": "yellow",
-    "friction": 0.02,
+    "friction": 0.1,
     "size": {
-      "x": 600,
-      "y": 400
+      "x": 1120,
+      "y": 600
     },
   "pockets": [
       {
