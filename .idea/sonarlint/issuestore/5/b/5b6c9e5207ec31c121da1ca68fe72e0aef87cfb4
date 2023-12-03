@@ -1,10 +1,23 @@
 
-`
-java:S1155 ">Use isEmpty() to check whether the collection is empty or not.(”ŸÚ¥ùÿÿÿÿ8ŞĞØ¬Â1
-c
-java:S1075$"ARefactor your code to get this URI from a customizable parameter.(í¬¥úÿÿÿÿ8ßĞØ¬Â1
-^
-java:S1075%"ARefactor your code to get this URI from a customizable parameter.(¹—Ò8ßĞØ¬Â1
-s
-java:S3457."Q%n should be used in place of \n to produce the platform-specific line separator.(£ûŒÒşÿÿÿÿ8àĞØ¬Â1
-L	java:S106."+Replace this use of System.err by a logger.(£ûŒÒşÿÿÿÿ8àĞØ¬Â1
+q
+java:S14500"TRemove the "scene" field and declare it as a local variable in the relevant methods.(÷‘éÑ8ˆíì€Ã1
+v
+java:S14501"TRemove the "stage" field and declare it as a local variable in the relevant methods.(‹ğÑœıÿÿÿÿ8ˆíì€Ã1
+M	java:S106‘"+Replace this use of System.out by a logger.(ƒ‚ğ‚üÿÿÿÿ8íì€Ã1
+M	java:S106”"+Replace this use of System.out by a logger.(êÊêøÿÿÿÿ8íì€Ã1
+J
+java:S1602¸",Remove useless curly braces around statement(øŸÎ8“íì€Ã1
+W
+java:S2864Ø"4Iterate over the "entrySet" instead of the "keySet".(öÍĞ£üÿÿÿÿ8•íì€Ã1
+U
+java:S1128"3Remove this unused import 'java.io.FilenameFilter'.(¶àıİşÿÿÿÿ8ìö€Ã1
+Z
+java:S1128"8Remove this unused import 'PoolGame.Strategy.GameReset'.(Êı·ûÿÿÿÿ8ìö€Ã1
+U
+java:S1128"3Remove this unused import 'javafx.geometry.Insets'.(›¨µğûÿÿÿÿ8ìö€Ã1
+W
+java:S1128":Remove this unused import 'javafx.scene.layout.StackPane'.(™÷èò8ìö€Ã1
+Y
+java:S1128#"7Remove this unused import 'javafx.scene.canvas.Canvas'.(á­Š©üÿÿÿÿ8ìö€Ã1
+Y
+java:S1144U"7Remove this unused private "setDifficultyLevel" method.(„àó²ûÿÿÿÿ8–íì€Ã1

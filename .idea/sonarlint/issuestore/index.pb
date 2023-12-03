@@ -131,3 +131,7 @@ e
 0src/main/java/PoolGame/Strategy/PocketThird.java,c\8\c89ad99a00fd33d6ef90777f83e65d1bbcdb721b
 Y
 )src/main/java/PoolGame/Items/PoolCue.java,a\7\a760fde1cd5e0068cbe763bb7a8bac3306be6bbe
+^
+.src/main/java/PoolGame/Items/GameSnapshot.java,b\d\bd83d03b26a57dce823d50f55ed41f8fd12cce2e
+C
+configs/config.json,1\b\1b8c43220785793b377f9587f20f83a80fe3cb9e

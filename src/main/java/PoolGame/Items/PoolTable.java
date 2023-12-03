@@ -23,6 +23,7 @@ public class PoolTable implements Drawable {
     private double friction;
     private Rectangle shape;
     private List<Ball> balls;
+    private Ball whiteBall;
     private List<Pocket> pockets;
 
     /**
@@ -127,7 +128,13 @@ public class PoolTable implements Drawable {
     public void addBall(Ball ball) {
         if (!this.balls.contains(ball)) {
             this.balls.add(ball);
+            if(ball.getBallType() == BallType.CUEBALL){
+                this.whiteBall = ball;
+            }
         }
+    }
+    public Ball getWhiteBall(){
+        return this.whiteBall;
     }
 
     /**

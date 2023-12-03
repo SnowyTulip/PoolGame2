@@ -34,6 +34,7 @@ public class Ball implements Drawable, Movable {
         /** All other ball type */
         NORMALBALL,
     };
+    private Game gameListener;
 
     static final double RADIUS = 15;
     private final double Friction_Scale = 0.1;
@@ -158,6 +159,9 @@ public class Ball implements Drawable, Movable {
      * Get the type of the ball.
      * @return The type of the ball
      */
+    public void addGameListener(Game game){
+        this.gameListener = game;
+    }
     public BallType getBallType() {
         return this.type;
     }
@@ -206,8 +210,12 @@ public class Ball implements Drawable, Movable {
      * Check if a ball has 0 velocity.
      * @return Returns true if a ball has 0 velocity, false otherwise
      */
-    public boolean hasStopped() {
-        return this.getXVel() == 0 && this.getYVel() == 0;
+    public boolean isAllowToHit() {
+        boolean isAllow = false;
+        if(this.getXVel() == 0 && this.getYVel() == 0 && this.gameListener.isAllowHitBall()){
+            isAllow = true;
+        }
+        return isAllow;
     }
 
     /**
@@ -322,8 +330,11 @@ public class Ball implements Drawable, Movable {
     }
 
     /** Disable the ball from carrying out any operations and hide the ball */
+    //禁用球之后需要将球的速度设置为0
     public void disable() {
         this.shape.setVisible(false);
+        this.setXVel(0);
+        this.setYVel(0);
         this.disabled = true;
     }
 
@@ -344,10 +355,12 @@ public class Ball implements Drawable, Movable {
     }
 
     /** Reset the ball to its original state */
+    // reset the poolCue
     public void reset() {
         this.resetPosition();
         this.resetVelocity();
         this.fallCounter = 0;
+        this.ballCue.reset();
     }
     private void genDashBall(ObservableList<Node> group){
         this.mouseDashshape = new Circle(0,0,RADIUS);
@@ -375,7 +388,7 @@ public class Ball implements Drawable, Movable {
     private void registerCueBallMouseAction() {
         this.shape.setOnMouseDragged(
             (actionEvent) -> {
-                if (this.hasStopped()) {
+                if (this.isAllowToHit()) {
                     this.mouseDragLine.setVisible(true);
                     this.mouseDragLine.setStartX(this.shape.getCenterX());
                     this.mouseDragLine.setStartY(this.shape.getCenterY());
@@ -410,7 +423,7 @@ public class Ball implements Drawable, Movable {
         );
         this.shape.setOnMouseReleased(
             (actionEvent) -> {
-                if (this.hasStopped()) {
+                if (this.isAllowToHit()) {
 //                    this.ballCue.HiddenCue();
                     this.mouseDragLine.setVisible(false);
                     double Vx = (this.shape.getCenterX() - actionEvent.getSceneX()) * hitScale;
@@ -431,6 +444,11 @@ public class Ball implements Drawable, Movable {
                 }
             }
         );
+    }
+    private void NotifyGameWhiteBallGo(){
+        if(this.gameListener != null){
+            this.gameListener.CounterStart();
+        }
     }
 
     /**
@@ -578,6 +596,7 @@ public class Ball implements Drawable, Movable {
             this.ballCue.CueMove();
             if (this.ballCue.isCollidesWithBall(this)) {
                 this.ballCue.LetBallGo(this);
+                NotifyGameWhiteBallGo();
             }
         }
     }
