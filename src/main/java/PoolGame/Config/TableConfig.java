@@ -74,4 +74,5 @@ public class TableConfig implements Configurable {
     public SizeConfig getSizeConfig() {
         return this.size;
     }
+    public PocketsConfig getPocketsConfig() {return this.pockets;};
 }

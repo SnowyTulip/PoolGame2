@@ -63,11 +63,11 @@ public class App extends Application {
         Game game = new Game(gameConfig);
         
         Canvas canvas = new Canvas(game.getWindowDimX(), game.getWindowDimY());
-        stage.setWidth(game.getWindowDimX());
+        stage.setWidth(game.getWindowDimX()+15);
         stage.setHeight(game.getWindowDimY() +
                         Pocket.RADIUS +
                         PoolTable.POCKET_OFFSET +
-                        4); // Magic number to get bottom to align
+                        12); // Magic number to get bottom to align
         root.getChildren().add(canvas);
         // GraphicsContext gc = canvas.getGraphicsContext2D();
         game.addDrawables(root);

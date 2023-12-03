@@ -2,6 +2,8 @@ package PoolGame.Items;
 
 import java.util.*;
 
+import PoolGame.Config.PocketConfig;
+import PoolGame.Config.PocketsConfig;
 import PoolGame.Drawable;
 import PoolGame.Game;
 import PoolGame.Config.TableConfig;
@@ -35,8 +37,8 @@ public class PoolTable implements Drawable {
      * @param dimX The dimension of the table in the x-axis
      * @param dimY The dimension of the table in the y-axis
      */
-    public PoolTable(String colourName, double friction, long dimX, long dimY) {
-        this.init(colourName, friction, dimX, dimY);
+    public PoolTable(String colourName, double friction, long dimX, long dimY, PocketsConfig pocketsConfig) {
+        this.init(colourName, friction, dimX, dimY,pocketsConfig);
     }
 
     /**
@@ -47,10 +49,11 @@ public class PoolTable implements Drawable {
         this.init(config.getColour(),
             config.getFriction(),
             config.getSizeConfig().getX(),
-            config.getSizeConfig().getY());
+            config.getSizeConfig().getY(),
+            config.getPocketsConfig());
     }
 
-    private void init(String colourName, double friction, long dimX, long dimY) {
+    private void init(String colourName, double friction, long dimX, long dimY, PocketsConfig pocketsConfig) {
         this.colourName = colourName;
         this.colour = Color.valueOf(this.colourName);
         this.friction = friction;
@@ -59,15 +62,28 @@ public class PoolTable implements Drawable {
         this.dim[1] = dimY;
         this.shape = new Rectangle(this.dim[0], this.dim[1], this.colour);
         this.balls = new LinkedList<>();
-        this.pockets = new ArrayList<>();
-        this.pockets.add(new Pocket(POCKET_OFFSET, POCKET_OFFSET));
-        this.pockets.add(new Pocket(dimX / 2, POCKET_OFFSET));
-        this.pockets.add(new Pocket(dimX - POCKET_OFFSET, POCKET_OFFSET));
-        this.pockets.add(new Pocket(POCKET_OFFSET, dimY - POCKET_OFFSET));
-        this.pockets.add(new Pocket(dimX / 2, dimY - POCKET_OFFSET));
-        this.pockets.add(new Pocket(dimX - POCKET_OFFSET, dimY - POCKET_OFFSET));
+//        this.pockets = new ArrayList<>();
+//        this.pockets.add(new Pocket(POCKET_OFFSET, POCKET_OFFSET));
+//        this.pockets.add(new Pocket(dimX / 2, POCKET_OFFSET));
+//        this.pockets.add(new Pocket(dimX - POCKET_OFFSET, POCKET_OFFSET));
+//        this.pockets.add(new Pocket(POCKET_OFFSET, dimY - POCKET_OFFSET));
+//        this.pockets.add(new Pocket(dimX / 2, dimY - POCKET_OFFSET));
+//        this.pockets.add(new Pocket(dimX - POCKET_OFFSET, dimY - POCKET_OFFSET));
+        initPockets(pocketsConfig);
     }
-
+    private void initPockets(PocketsConfig pocketsConfig) {
+        this.pockets = new ArrayList<>();
+        List<PocketConfig> PocketsConfigList = pocketsConfig.getPockets();
+        for (PocketConfig pocketConfig : PocketsConfigList){
+            pockets.add(new Pocket(pocketConfig));
+        }
+//        double AddDiffs[] = {1,1, 0,1, -1,1, 1,-1 , 0,-1 ,-1,-1};
+//        for(int i = 0;i < PocketsConfigList.size();++i){
+//            double diffx = AddDiffs[2*i] * POCKET_OFFSET;
+//            double diffy = AddDiffs[2*i+1] * POCKET_OFFSET;
+//            pockets.add(new Pocket(PocketsConfigList.get(i),diffx,diffy));
+//        }
+    }
     /**
      * Get the x dimension of the table.
      * @return The dimension of the table for the x axis.

@@ -1,5 +1,7 @@
 package PoolGame.Items;
 
+import PoolGame.Config.PocketConfig;
+import PoolGame.Config.PositionConfig;
 import PoolGame.Drawable;
 import javafx.collections.ObservableList;
 import javafx.geometry.Point2D;
@@ -14,6 +16,7 @@ public class Pocket implements Drawable {
     public static final double RADIUS = Ball.RADIUS + 5;
     /** The colour of the pocket */
     protected Color colour = Color.BLACK;
+    private double radius;
     /** The JavaFX shape of the pocket */
     protected Circle shape;
 
@@ -24,6 +27,16 @@ public class Pocket implements Drawable {
      */
     public Pocket(double posX, double posY) {
         this.shape = new Circle(posX, posY, Pocket.RADIUS, this.colour);
+    }
+    public  Pocket(PocketConfig pocketConfig){
+        PositionConfig posConfig =  pocketConfig.getPocketPosition();
+        this.radius = pocketConfig.getRadius();
+        this.shape =  new Circle(posConfig.getX(), posConfig.getY(), Pocket.RADIUS, this.colour);
+    }
+    public  Pocket(PocketConfig pocketConfig,double diffx,double diffy){
+        PositionConfig posConfig =  pocketConfig.getPocketPosition();
+        this.radius = pocketConfig.getRadius();
+        this.shape =  new Circle(posConfig.getX() + diffx, posConfig.getY() + diffy, Pocket.RADIUS, this.colour);
     }
 
     /**

@@ -22,6 +22,7 @@ public class Ball implements Drawable, Movable {
 
     private  Line mouseDashLine;
     private Circle mouseDashshape;
+    private PoolCue ballCue;
     private double friction = 1.0;
     private double g = 9.8;
     private double hitScale = 0.1;
@@ -74,6 +75,8 @@ public class Ball implements Drawable, Movable {
         this.mouseDashLine.setVisible(false);
         this.mouseDashLine.getStrokeDashArray().addAll(5d,5d);
         this.mouseDashLine.setFill(Color.color(1,1,1));
+        //添加球杆
+        this.ballCue = new PoolCue();
         this.setColour(colour);
         this.setXPos(xPos);
         this.setYPos(yPos);
@@ -98,6 +101,7 @@ public class Ball implements Drawable, Movable {
         this.mouseDashLine.setVisible(false);
         this.mouseDashLine.getStrokeDashArray().addAll(5d,5d);
         this.mouseDashLine.setFill(Color.color(1,1,1));
+        this.ballCue = new PoolCue();
     }
 
     /**
@@ -213,6 +217,7 @@ public class Ball implements Drawable, Movable {
         groupChildren.add(this.mouseDragLine);
         groupChildren.add(this.mouseDashLine);
         this.genDashBall(groupChildren);
+        this.ballCue.addToGroup(groupChildren);
     }
 
     public void setXVel(double xVel) {
@@ -394,12 +399,17 @@ public class Ball implements Drawable, Movable {
                     this.mouseDashshape.setVisible(true);
                     this.mouseDashshape.setCenterX(this.shape.getCenterX() + Dx);
                     this.mouseDashshape.setCenterY(this.shape.getCenterY() + Dy);
+
+                    //球杆
+//                    this.ballCue.Paint(this.shape.getCenterX(),this.shape.getCenterY(), actionEvent.getSceneX(),actionEvent.getSceneY(),RADIUS);
+                    this.ballCue.PaintImage(this.shape.getCenterX(),this.shape.getCenterY(), actionEvent.getSceneX(),actionEvent.getSceneY(),RADIUS);
                 }
             }
         );
         this.shape.setOnMouseReleased(
             (actionEvent) -> {
                 if (this.hasStopped()) {
+//                    this.ballCue.HiddenCue();
                     this.mouseDragLine.setVisible(false);
                     double Vx = (this.shape.getCenterX() - actionEvent.getSceneX()) * hitScale;
                     double Vy = (this.shape.getCenterY() - actionEvent.getSceneY()) * hitScale;
@@ -408,10 +418,14 @@ public class Ball implements Drawable, Movable {
                     Vx = scaleVel(V,Vx);
                     Vy = scaleVel(V,Vy);
                     V  = Math.sqrt(Vx*Vx + Vy*Vy);
-                    setXVel(Vx);
-                    setYVel(Vy);
+//                    setXVel(Vx);
+//                    setYVel(Vy);
+
+                    this.ballCue.LetCueGo(Vx,Vy);
+
                     this.mouseDashshape.setVisible(false);
                     this.mouseDashLine.setVisible(false);
+
                 }
             }
         );
@@ -558,6 +572,12 @@ public class Ball implements Drawable, Movable {
         double yPos = this.shape.getCenterY() + this.vel[1];
         this.shape.setCenterX(xPos);
         this.shape.setCenterY(yPos);
+        if(this.ballCue.getStatus() == PoolCue.CueStatus.Moving) {
+            this.ballCue.CueMove();
+            if (this.ballCue.isCollidesWithBall(this)) {
+                this.ballCue.LetBallGo(this);
+            }
+        }
     }
 
     /**
