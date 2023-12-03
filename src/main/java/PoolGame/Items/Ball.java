@@ -95,6 +95,8 @@ public class Ball implements Drawable, Movable {
      */
     public Ball() {
         this.shape = new Circle(this.originalPos[0], this.originalPos[1], RADIUS);
+        this.shape.setStrokeWidth(0.5);
+        this.shape.setStroke(Color.BLACK);
         this.mouseDragLine = new Line();
         this.mouseDragLine.setVisible(false);
         this.mouseDashLine = new Line();
