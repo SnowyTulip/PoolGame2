@@ -172,6 +172,20 @@ public class PoolTable implements Drawable {
         }
     }
 
+    public void addToGroupTable ( ObservableList<Node> groupChildren){
+        groupChildren.add(this.shape);
+    }
+    public void addToGroupPockets (ObservableList<Node> groupChildren){
+        for (Pocket pocket : this.pockets) {
+            pocket.addToGroup(groupChildren);
+        }
+    }
+    public void addToGroupBalls (ObservableList<Node> groupChildren){
+        for (Ball ball : this.balls) {
+            ball.addToGroup(groupChildren);
+        }
+    }
+
     /**
      * Apply friction to all the balls
      */

@@ -359,3 +359,9 @@ Q.idea/sonarlint/securityhotspotstore/b/d/bd83d03b26a57dce823d50f55ed41f8fd12cce
 Q.idea/sonarlint/securityhotspotstore/9/9/994025f59b8d7c11a746dc1a300a3ba625da8dd9,4\4\445282b898283804210f31f8f1f9528dc8135fe9
 Å
 Q.idea/sonarlint/securityhotspotstore/9/f/9fe84ebb15faf917b7def6236dba604453cc61e0,b\b\bbf202272a96de5cd6b6828ffdc55fb3ce45289c
+i
+9src/main/java/PoolGame/GameObject/GameCounterManager.java,f\8\f8865303689959ae5d3b0bbc1237cb4eb3c795bb
+`
+0src/main/java/PoolGame/GameObject/GameTimer.java,8\c\8c0b0d85616eb348716c239b6d6963650c38bf20
+`
+0src/main/java/PoolGame/Strategy/BallsScores.java,4\2\420bbbf371ece134e9e824797ce2c6d9d25500fc

@@ -9,24 +9,24 @@ import PoolGame.Config.GameConfig;
 import PoolGame.Items.Ball;
 import PoolGame.Items.PoolTable;
 import javafx.collections.ObservableList;
+import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
 /** The game class that runs the game */
 public class Game {
-    private PoolTable table;
+    PoolTable table;
     private boolean shownWonText = false;
+    private GameCounterManager counterManager;
     private final Text winText = new Text(50, 50, "Win and Bye");
     enum GameState {
         pause,running,
     }
-    //用来标记当前回合是否已经结束
-    //从一次击球开始,到所有球都停下来记录为一个回合
-    enum CounterState {
-        counterRunning,counterEnd,
-    }
-    private CounterState counterState;
+    private GameTimer gameTimer;
     private GameState state;
 
 
@@ -55,12 +55,15 @@ public class Game {
         }
         this.table.setupBalls(balls);
         this.winText.setVisible(false);
-        this.winText.setX(table.getDimX() / 2);
-        this.winText.setY(table.getDimY() / 2);
+        this.winText.setX(table.getDimX() / 2.);
+        this.winText.setY(table.getDimY() / 2.);
         this.table.getWhiteBall().addGameListener(this);
+        this.gameTimer = new GameTimer();
         GameStart();
-        // 游戏开始视作第0个回合结束
-        CounterEnd();
+        this.counterManager = new GameCounterManager(this);
+    }
+    public GameCounterManager getGameCounterManager() {
+        return counterManager;
     }
 
     /**
@@ -90,10 +93,15 @@ public class Game {
     /** Add all drawable object to the JavaFX group
      * @param root The JavaFX `Group` instance
     */
+    //显示Label 不可以遮挡球，因此添加Text 需要在球之前、球桌之后
     public void addDrawables(Group root) {
         ObservableList<Node> groupChildren = root.getChildren();
-        table.addToGroup(groupChildren);
+        table.addToGroupTable(groupChildren);
+        table.addToGroupPockets(groupChildren);
         groupChildren.add(this.winText);
+        groupChildren.add(this.gameTimer.getNode());
+        table.addToGroupBalls(groupChildren);
+
     }
     public void setConfig(GameConfig config) {
         GamePause();
@@ -105,9 +113,11 @@ public class Game {
     }
     public void GameStart(){
         this.state = GameState.running;
+        this.gameTimer.TimerStart();
     }
     public void GamePause(){
         this.state = GameState.pause;
+        this.gameTimer.TimerStop();
     }
 
     /** Reset the game */
@@ -115,37 +125,14 @@ public class Game {
         this.winText.setVisible(false);
         this.shownWonText = false;
         this.table.reset();
+        this.gameTimer.reset();
         GameStart();
     }
     public boolean isAllowHitBall(){
-        boolean hit = false;
-        if(this.counterState == CounterState.counterEnd)
-            hit = true;
-        return hit;
-    }
-    public void CounterStart(){
-        this.counterState = CounterState.counterRunning;
-        System.out.println("回合开始");
-    }
-    public void CounterEnd(){
-        this.counterState = CounterState.counterEnd;
-        System.out.println("回合结束");
-        //保存快照
-    }
-    private boolean isCounterEnd(){
-        //如果当前回合为正在运行, 当所有的球都停下时 -> 回合结束
-        //并且如果球被禁用,则跳过对他的判断
-        double V = 0;
-        for (Ball ball : this.table.getBalls()) {
-            if(!ball.isDisabled()) {
-                V += Math.abs(ball.getXVel()) + Math.abs(ball.getYVel());
-            }
-        }
-        boolean CounterEnd = false;
-        if (this.counterState == CounterState.counterRunning && V == 0){
-            CounterEnd = true;
-        }
-        return CounterEnd;
+        boolean canHit = false;
+        if(!this.counterManager.isCounterRunning())
+            canHit = true;
+        return canHit;
     }
 
     /** Code to execute every tick. */
@@ -163,8 +150,8 @@ public class Game {
             for (Ball ball : this.table.getBalls()) {
                 ball.move();
             }
-            if(this.isCounterEnd()){
-                this.CounterEnd();
+            if(this.counterManager.isCounterEnd()){
+                this.counterManager.CounterEnd();
             }
 
         }

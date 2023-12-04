@@ -222,6 +222,7 @@ public class Ball implements Drawable, Movable {
      */
     public void addToGroup(ObservableList<Node> groupChildren) {
         groupChildren.add(this.shape);
+        this.shape.toFront();
         groupChildren.add(this.mouseDragLine);
         groupChildren.add(this.mouseDashLine);
         this.genDashBall(groupChildren);
@@ -445,7 +446,7 @@ public class Ball implements Drawable, Movable {
     }
     private void NotifyGameWhiteBallGo(){
         if(this.gameListener != null){
-            this.gameListener.CounterStart();
+            this.gameListener.getGameCounterManager().CounterStart();
         }
     }
 
