@@ -3,7 +3,6 @@ package PoolGame.Builder;
 import PoolGame.Items.Ball;
 import PoolGame.Items.Ball.BallType;
 import PoolGame.Strategy.BallPocketStrategy;
-import javafx.scene.shape.Rectangle;
 
 /**
  * @projectName: Design_Pattern_Assignment_2

@@ -5,8 +5,15 @@ import java.util.*;
 import PoolGame.Config.PocketConfig;
 import PoolGame.Config.PocketsConfig;
 import PoolGame.GameObject.Game;
+import PoolGame.GameObject.IGenGameSnapshot;
+import PoolGame.Items.Ball;
 import PoolGame.Config.TableConfig;
+import PoolGame.GameObjectSnapshot.BallSnapshot;
+import PoolGame.GameObjectSnapshot.GameObjectSnapshot;
+import PoolGame.GameObjectSnapshot.TableSnapshot;
 import PoolGame.Items.Ball.BallType;
+import PoolGame.Items.Drawable;
+import PoolGame.Items.Pocket;
 import javafx.collections.ObservableList;
 import javafx.geometry.Bounds;
 import javafx.geometry.Point2D;
@@ -15,7 +22,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
 /** A pool table */
-public class PoolTable implements Drawable {
+public class PoolTable implements Drawable , IGenGameSnapshot {
     private long[] dim;
     private String colourName;
     private Color colour;
@@ -28,8 +35,36 @@ public class PoolTable implements Drawable {
     /**
      * Offset of pockets on the table.
      */
+
     public static final double POCKET_OFFSET = 5;
 
+    public TableSnapshot genTableSnapshot() {
+        return new TableSnapshot(this.balls);
+    }
+    public void setSnapshot(TableSnapshot snapshot){
+        List<BallSnapshot> snapshots= snapshot.getBallsSnapshots();
+        if(this.balls.size() == snapshots.size()){
+            for (int i = 0; i < snapshots.size(); i++) {
+                this.balls.get(i).setSnapshot(snapshots.get(i));
+            }
+        }
+    }
+    @Override
+    public GameObjectSnapshot genSnapshot() {
+        return new TableSnapshot(this.balls);
+    }
+
+    @Override
+    public void setSnapshot(GameObjectSnapshot snapshot) {
+        if(snapshot instanceof TableSnapshot) {
+            List<BallSnapshot> snapshots = ((TableSnapshot) snapshot).getBallsSnapshots();
+            if (this.balls.size() == snapshots.size()) {
+                for (int i = 0; i < snapshots.size(); i++) {
+                    this.balls.get(i).setSnapshot(snapshots.get(i));
+                }
+            }
+        }
+    }
     /**
      * Build the pool table with the provided values
      * @param colourName The colour of the table in String
@@ -282,4 +317,6 @@ public class PoolTable implements Drawable {
             ball.reset();
         }
     }
+
+
 }

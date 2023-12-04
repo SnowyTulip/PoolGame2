@@ -1,14 +1,22 @@
 
 w
-java:S14501"URemove the "colour" field and declare it as a local variable in the relevant methods.(Ýõõ’úÿÿÿÿ8ð¼Ã Ã1
-b	java:S107E"AConstructor has 9 parameters, which is greater than 7 authorized.(¼Ò“ úÿÿÿÿ8ñ¼Ã Ã1
+java:S14504"URemove the "colour" field and declare it as a local variable in the relevant methods.(Ýõõ’úÿÿÿÿ8ñ†ªÃ1
+b	java:S107H"AConstructor has 9 parameters, which is greater than 7 authorized.(¼Ò“ úÿÿÿÿ8ñ†ªÃ1
 >
-java:S1116#"Remove this empty statement.(ôŸŽìúÿÿÿÿ8ò¼Ã Ã1
+java:S1116&"Remove this empty statement.(ôŸŽìúÿÿÿÿ8‘ñ†ªÃ1
+u
+java:S6201¯"RReplace this instanceof check and cast with 'instanceof BallSnapshot ballsnapshot'(øÀŠ„þÿÿÿÿ8–ñ†ªÃ1
+u
+java:S6201¯"RReplace this instanceof check and cast with 'instanceof BallSnapshot ballsnapshot'(øÀŠ„þÿÿÿÿ8–ñ†ªÃ1
+u
+java:S6201¯"RReplace this instanceof check and cast with 'instanceof BallSnapshot ballsnapshot'(øÀŠ„þÿÿÿÿ8–ñ†ªÃ1
+u
+java:S6201¯"RReplace this instanceof check and cast with 'instanceof BallSnapshot ballsnapshot'(øÀŠ„þÿÿÿÿ8–ñ†ªÃ1
 A
-java:S1659Ã"#Declare "fVelY" on a separate line.(‚èÛ…8ü¼Ã Ã1
+java:S1659ß"#Declare "fVelY" on a separate line.(‚èÛ…8žñ†ªÃ1
 B
-java:S1068"%Remove this unused "g" private field.(°”âÔ8ý¼Ã Ã1
+java:S1068"%Remove this unused "g" private field.(°”âÔ8Ÿñ†ªÃ1
 M
-java:S1068)"+Remove this unused "MIN_VEL" private field.(÷úßÐúÿÿÿÿ8ý¼Ã Ã1
+java:S1068,"+Remove this unused "MIN_VEL" private field.(÷úßÐúÿÿÿÿ8Ÿñ†ªÃ1
 [
-java:S1144è"=Remove this unused private "calculateCueBallVelOnHit" method.(ÃåÁ¹8ý¼Ã Ã1
+java:S1144„"=Remove this unused private "calculateCueBallVelOnHit" method.(ÃåÁ¹8Ÿñ†ªÃ1

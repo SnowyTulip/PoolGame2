@@ -1,6 +1,14 @@
 
-v	java:S135‰"YReduce the total number of break and continue statements in this loop to use at most one.(¼‰Ÿ›8ÚíºÃ1
+v	java:S135¬"YReduce the total number of break and continue statements in this loop to use at most one.(¼‰Ÿ›8§—™¨Ã1
 {
-java:S1450"YRemove the "colourName" field and declare it as a local variable in the relevant methods.(·Ç¾Şüÿÿÿÿ8¦îºÃ1
+java:S1450"YRemove the "colourName" field and declare it as a local variable in the relevant methods.(·Ç¾Şüÿÿÿÿ8®—™¨Ã1
+v
+java:S6201;"TReplace this instanceof check and cast with 'instanceof TableSnapshot tablesnapshot'(ŸŸç§ıÿÿÿÿ8Ù²™¨Ã1
 u
-java:S3776Ü"RRefactor this method to reduce its Cognitive Complexity from 21 to the 15 allowed.(ûÕÙöşÿÿÿÿ8­îºÃ1
+java:S3776ÿ"RRefactor this method to reduce its Cognitive Complexity from 21 to the 15 allowed.(ûÕÙöşÿÿÿÿ8·—™¨Ã1
+p
+java:S1128	"TRemove this unnecessary import: same package classes are always implicitly imported.(Çœ‰a8Úú¸ªÃ1
+v
+java:S1128"TRemove this unnecessary import: same package classes are always implicitly imported.(İ¥ùÿÿÿÿ8Úú¸ªÃ1
+v
+java:S1128"TRemove this unnecessary import: same package classes are always implicitly imported.(ıŸ¶¥ùÿÿÿÿ8Ûú¸ªÃ1

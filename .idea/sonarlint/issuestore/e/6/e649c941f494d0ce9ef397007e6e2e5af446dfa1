@@ -1,2 +1,10 @@
 
-L	java:S1060"+Replace this use of System.err by a logger.( Ÿƒ²ıÿÿÿÿ8şö¢Ã1
+L	java:S1063"+Replace this use of System.err by a logger.( Ÿƒ²ıÿÿÿÿ8‡ÜÔ©Ã1
+u
+java:S6201±"RReplace this instanceof check and cast with 'instanceof GameSnapshot gamesnapshot'(ÆÂÇÓüÿÿÿÿ8¡‡ñ©Ã1
+u
+java:S6201±"RReplace this instanceof check and cast with 'instanceof GameSnapshot gamesnapshot'(ÆÂÇÓüÿÿÿÿ8¡‡ñ©Ã1
+u
+java:S6201±"RReplace this instanceof check and cast with 'instanceof GameSnapshot gamesnapshot'(ÆÂÇÓüÿÿÿÿ8¡‡ñ©Ã1
+u
+java:S6201±"RReplace this instanceof check and cast with 'instanceof GameSnapshot gamesnapshot'(ÆÂÇÓüÿÿÿÿ8¡‡ñ©Ã1

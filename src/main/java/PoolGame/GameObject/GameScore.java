@@ -1,5 +1,8 @@
 package PoolGame.GameObject;
 
+import PoolGame.GameObjectSnapshot.GameObjectSnapshot;
+import PoolGame.GameObjectSnapshot.GameSnapshot;
+import PoolGame.GameObjectSnapshot.ScoreSnapshot;
 import javafx.animation.PauseTransition;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
@@ -17,7 +20,7 @@ import javafx.util.Duration;
  * @description: TODO
  * @version: 1.0
  */
-public class GameScore {
+public class GameScore implements IGenGameSnapshot{
     private Label gameScoreLabel;
     private Pane gameScorePane;
     private int currentScore = 0;
@@ -57,4 +60,16 @@ public class GameScore {
         return this.gameScorePane;
     }
 
+    @Override
+    public ScoreSnapshot genSnapshot() {
+        return new ScoreSnapshot(this.currentScore);
+    }
+
+    @Override
+    public void setSnapshot(GameObjectSnapshot snapshot) {
+        if(snapshot instanceof ScoreSnapshot){
+            this.currentScore = ((ScoreSnapshot)snapshot).getScore();
+            this.updateScoreLabel();
+        }
+    }
 }

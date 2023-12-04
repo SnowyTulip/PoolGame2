@@ -1,13 +1,11 @@
 
 q
-java:S1450-"TRemove the "scene" field and declare it as a local variable in the relevant methods.(÷‘éÑ8ˆíì€Ã1
+java:S1450-"TRemove the "scene" field and declare it as a local variable in the relevant methods.(÷‘éÑ8“íÖ©Ã1
 v
-java:S1450."TRemove the "stage" field and declare it as a local variable in the relevant methods.(‹ğÑœıÿÿÿÿ8ˆíì€Ã1
-M	java:S106"+Replace this use of System.out by a logger.(ƒ‚ğ‚üÿÿÿÿ8íì€Ã1
-M	java:S106‘"+Replace this use of System.out by a logger.(êÊêøÿÿÿÿ8íì€Ã1
+java:S1450."TRemove the "stage" field and declare it as a local variable in the relevant methods.(‹ğÑœıÿÿÿÿ8“íÖ©Ã1
 J
-java:S1602µ",Remove useless curly braces around statement(øŸÎ8“íì€Ã1
+java:S1602³",Remove useless curly braces around statement(øŸÎ8¢íÖ©Ã1
 W
-java:S2864Õ"4Iterate over the "entrySet" instead of the "keySet".(öÍĞ£üÿÿÿÿ8•íì€Ã1
+java:S2864Ó"4Iterate over the "entrySet" instead of the "keySet".(öÍĞ£üÿÿÿÿ8¥íÖ©Ã1
 Y
-java:S1144R"7Remove this unused private "setDifficultyLevel" method.(„àó²ûÿÿÿÿ8–íì€Ã1
+java:S1144R"7Remove this unused private "setDifficultyLevel" method.(„àó²ûÿÿÿÿ8§íÖ©Ã1

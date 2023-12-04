@@ -1,4 +1,4 @@
-package PoolGame.GameObject;
+package PoolGame.Config;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;

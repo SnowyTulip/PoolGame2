@@ -1,5 +1,7 @@
 package PoolGame.GameObject;
 
+import PoolGame.GameObjectSnapshot.GameObjectSnapshot;
+import PoolGame.GameObjectSnapshot.TimerSnapshot;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.collections.ObservableList;
@@ -21,7 +23,7 @@ import java.time.LocalTime;
  * @description: TODO
  * @version: 1.0
  */
-public class GameTimer {
+public class GameTimer implements IGenGameSnapshot{
     private Label timerLabel;
     private Pane timerPane;
     private Timeline timeLine;
@@ -59,4 +61,15 @@ public class GameTimer {
         this.timeLine.stop();
     }
 
+    @Override
+    public TimerSnapshot genSnapshot() {
+        return new TimerSnapshot(this.ticks);
+    }
+
+    @Override
+    public void setSnapshot(GameObjectSnapshot snapshot) {
+        if(snapshot instanceof TimerSnapshot){
+            this.ticks = ((TimerSnapshot) snapshot).getTicks();
+        }
+    }
 }

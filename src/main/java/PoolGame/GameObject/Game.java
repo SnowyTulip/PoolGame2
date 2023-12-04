@@ -6,6 +6,8 @@ import java.util.List;
 import PoolGame.Builder.BallBuilderDirector;
 import PoolGame.Config.BallConfig;
 import PoolGame.Config.GameConfig;
+import PoolGame.GameObjectSnapshot.GameObjectSnapshot;
+import PoolGame.GameObjectSnapshot.GameSnapshot;
 import PoolGame.Items.Ball;
 import PoolGame.Items.PoolTable;
 import javafx.collections.ObservableList;
@@ -14,11 +16,12 @@ import javafx.scene.Node;
 import javafx.scene.text.Text;
 
 /** The game class that runs the game */
-public class Game {
+public class Game implements IGenGameSnapshot{
     PoolTable table;
     private boolean shownWonText = false;
     private GameCounterManager counterManager;
     private final Text winText = new Text(50, 50, "Win and Bye");
+
     enum GameState {
         pause,running,
     }
@@ -56,9 +59,12 @@ public class Game {
         this.winText.setY(table.getDimY() / 2.);
         this.table.getWhiteBall().addGameListener(this);
         this.gameTimer = new GameTimer();
+        this.gameScore = new GameScore();
         GameStart();
         this.counterManager = new GameCounterManager(this);
-        gameScore = new GameScore();
+        //第0个回合也需要保存快照
+        counterManager.CounterEnd();
+
     }
     public GameCounterManager getGameCounterManager() {
         return counterManager;
@@ -137,7 +143,6 @@ public class Game {
             canHit = true;
         return canHit;
     }
-
     /** Code to execute every tick. */
     public void tick() {
 
@@ -159,4 +164,28 @@ public class Game {
 
         }
     }
+    @Override
+    public GameSnapshot genSnapshot() {
+        return new GameSnapshot(this.table.genTableSnapshot()
+                ,this.counterManager.genSnapshot()
+                ,this.gameScore.genSnapshot()
+                ,this.gameTimer.genSnapshot());
+    }
+
+    @Override
+    public void setSnapshot(GameObjectSnapshot snapshot) {
+        if(snapshot instanceof GameSnapshot){
+            this.table.setSnapshot(((GameSnapshot) snapshot).getTableSnapshot());
+            this.counterManager.setSnapshot(((GameSnapshot) snapshot).getCounterSnapshot());
+            this.gameTimer.setSnapshot(((GameSnapshot) snapshot).getTimeSnapshot());
+            this.gameScore.setSnapshot(((GameSnapshot) snapshot).getScoreSnapshot());
+        }
+    }
+    public void GameGoBack(){
+        this.counterManager.GameGoBack();
+    }
+    public void GameGoNext(){
+        this.counterManager.GameGoNext();
+    }
+
 }

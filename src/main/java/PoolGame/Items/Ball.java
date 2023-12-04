@@ -1,6 +1,9 @@
 package PoolGame.Items;
 
 import PoolGame.GameObject.Game;
+import PoolGame.GameObject.IGenGameSnapshot;
+import PoolGame.GameObjectSnapshot.BallSnapshot;
+import PoolGame.GameObjectSnapshot.GameObjectSnapshot;
 import PoolGame.Strategy.BallPocketStrategy;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -16,7 +19,7 @@ import static java.lang.Math.sqrt;
 /**
  * The ball class for all types of balls.
  */
-public class Ball implements Drawable, Movable {
+public class Ball implements Drawable, Movable, IGenGameSnapshot {
 
     private  Line mouseDashLine;
     private Circle mouseDashshape;
@@ -291,6 +294,27 @@ public class Ball implements Drawable, Movable {
         this.originalVel[0] = xVel;
         this.setXVel(xVel);
     }
+    public BallSnapshot genSnapshot() {
+        return  new BallSnapshot(this.getXPos(),this.getYPos(),this.fallCounter,this.disabled);
+    }
+
+
+    public void setSnapshot(GameObjectSnapshot snapshot) {
+        if(snapshot instanceof BallSnapshot) {
+            setXPos(((BallSnapshot) snapshot).getBallPosX());
+            setYPos(((BallSnapshot) snapshot).getBallPosY());
+            this.fallCounter = ((BallSnapshot) snapshot).getFallCounter();
+            this.disabled = ((BallSnapshot) snapshot).getDisabled();
+            this.setXVel(0);
+            this.setYVel(0);
+            if(disabled){
+                this.disable();
+            }
+            else{
+                this.enable();
+            }
+        }
+    }
 
     /**
      * Set the initial y velocity of the ball.
@@ -345,6 +369,10 @@ public class Ball implements Drawable, Movable {
         this.setXVel(0);
         this.setYVel(0);
         this.disabled = true;
+    }
+    public void enable() {
+        this.shape.setVisible(true);
+        this.disabled = false;
     }
 
     /** Reset a ball to its initial position and make it visible and interactable */

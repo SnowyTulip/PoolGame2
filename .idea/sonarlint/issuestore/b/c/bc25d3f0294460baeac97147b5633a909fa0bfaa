@@ -1,15 +1,0 @@
-
-
-java:S1130$"xRemove the declaration of thrown exception 'java.io.FileNotFoundException' which is a subclass of 'java.io.IOException'.(¥«ϊΚ
-“
-java:S11302"xRemove the declaration of thrown exception 'java.io.FileNotFoundException' which is a subclass of 'java.io.IOException'.(ΜΚ¨³ϊÿÿÿÿ
-“
-java:S1130E"xRemove the declaration of thrown exception 'java.io.FileNotFoundException' which is a subclass of 'java.io.IOException'.(τεϋ‘όÿÿÿÿ
-@
-java:S1197J"*Move the array designators [] to the type.(«Ϋιε
-“
-java:S1130t"xRemove the declaration of thrown exception 'java.io.FileNotFoundException' which is a subclass of 'java.io.IOException'.(Η§…ύÿÿÿÿ
-U
-java:S1128"8Remove this unused import 'PoolGame.Config.BallsConfig'.(‘ΖΖ‚8εύ¨¬Β1
-U
-java:S1128"8Remove this unused import 'PoolGame.Config.TableConfig'.(‰ηΈώ8εύ¨¬Β1

@@ -9,8 +9,6 @@ V
 &src/main/java/PoolGame/StartProxy.java,1\b\1b1176e763a661805e4b0ea1b881d84e0ee90807
 S
 #src/test/java/PoolGame/AppTest.java,b\e\be75e249d5ae6d9debe436b6ab4639882299a7a0
-P
- src/main/java/PoolGame/Game.java,e\9\e9c81eb4b9df42d0a0ba1a31bccd2bc2b7f910d3
 ;
 gradlew.bat,2\a\2a45a911a8f1836b0b6c5b758962572012d8f8c3
 7
@@ -18,13 +16,7 @@ P
 X
 (gradle/wrapper/gradle-wrapper.properties,f\b\fbe448ebfc3eb2d4e308f6b8b043666f5b57235e
 S
-#src/main/java/PoolGame/Movable.java,6\a\6a45e99374755994ff2e22c600028fd3fc28f8b4
-T
-$src/main/java/PoolGame/Drawable.java,6\d\6d3523b145be1d79c841284eeaf5942ed2648ba2
-S
 #.idea/sonarlint/issuestore/index.pb,9\f\9fe84ebb15faf917b7def6236dba604453cc61e0
-X
-(src/main/java/PoolGame/ConfigReader.java,b\c\bc25d3f0294460baeac97147b5633a909fa0bfaa
 X
 (src/main/java/PoolGame/Items/Pocket.java,4\6\46baff73b9975c997c298d475f5e3ba0d25029ae
 a
@@ -131,18 +123,10 @@ e
 0src/main/java/PoolGame/Strategy/PocketThird.java,c\8\c89ad99a00fd33d6ef90777f83e65d1bbcdb721b
 Y
 )src/main/java/PoolGame/Items/PoolCue.java,a\7\a760fde1cd5e0068cbe763bb7a8bac3306be6bbe
-^
-.src/main/java/PoolGame/Items/GameSnapshot.java,b\d\bd83d03b26a57dce823d50f55ed41f8fd12cce2e
 C
 configs/config.json,1\b\1b8c43220785793b377f9587f20f83a80fe3cb9e
-c
-3src/main/java/PoolGame/GameObject/GameSnapshot.java,b\7\b7b9ebed534b3ef8fdec5825c8b4ab4f91e4573d
 [
 +src/main/java/PoolGame/GameObject/Game.java,e\6\e649c941f494d0ce9ef397007e6e2e5af446dfa1
-c
-3src/main/java/PoolGame/GameObject/ConfigReader.java,d\d\ddc65e5ec04d7a0baf5489f9961a31da460e0b16
-g
-7src/main/java/PoolGame/GameObject/GameConfigReader.java,f\3\f3466558e4e1eadc247ee4523bee7b31911fedfe
 w
 G.idea/sonarlint/issuestore/1/b/1b8c43220785793b377f9587f20f83a80fe3cb9e,0\9\09350d992700fa3faf75d4cb8bd8dd255621d058
 Å
@@ -364,6 +348,22 @@ i
 `
 0src/main/java/PoolGame/GameObject/GameTimer.java,8\c\8c0b0d85616eb348716c239b6d6963650c38bf20
 `
-0src/main/java/PoolGame/Strategy/BallsScores.java,4\2\420bbbf371ece134e9e824797ce2c6d9d25500fc
-`
 0src/main/java/PoolGame/GameObject/GameScore.java,a\6\a6559c83249ac4a7a1ba5871f03392c2d76a5acd
+k
+;src/main/java/PoolGame/GameObjectSnapshot/GameSnapshot.java,0\4\0454876411d40248193aa5cca078ea8b622f9394
+k
+;src/main/java/PoolGame/GameObjectSnapshot/BallSnapshot.java,2\8\28b1b58f628b307ac22c6d8a756e7744484227de
+l
+<src/main/java/PoolGame/GameObjectSnapshot/TableSnapshot.java,0\6\0662743b276d11bb437863163a06a11162c8643b
+c
+3src/main/java/PoolGame/Config/GameConfigReader.java,2\3\23491b7cfa09a3200e02ad2096c738d673229bac
+q
+Asrc/main/java/PoolGame/GameObjectSnapshot/GameObjectSnapshot.java,8\e\8ee154ad341d37ee138e2e72e0b24517dc892dfa
+g
+7src/main/java/PoolGame/GameObject/IGenGameSnapshot.java,1\4\14af70139baa514d33dac9b8b35cb07b0e1eaec8
+l
+<src/main/java/PoolGame/GameObjectSnapshot/TimerSnapshot.java,2\4\241f3bccd704caafd869d50cc6aa2000a412cd68
+l
+<src/main/java/PoolGame/GameObjectSnapshot/ScoreSnapshot.java,e\3\e329748419969ee267bbf561ac22d4cd9b418b17
+n
+>src/main/java/PoolGame/GameObjectSnapshot/CounterSnapshot.java,1\d\1da9489fce8dbc4a97ab0ced1a6e240a20e167ee

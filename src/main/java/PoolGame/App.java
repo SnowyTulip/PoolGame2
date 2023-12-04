@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.*;
 
 import PoolGame.Config.GameConfig;
-import PoolGame.GameObject.GameConfigReader;
+import PoolGame.Config.GameConfigReader;
 import PoolGame.GameObject.Game;
 import PoolGame.Items.Pocket;
 import PoolGame.Items.PoolTable;
@@ -24,7 +24,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import org.json.simple.parser.ParseException;
 
-import PoolGame.GameObject.GameConfigReader.ConfigKeyMissingException;
+import PoolGame.Config.GameConfigReader.ConfigKeyMissingException;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
@@ -138,11 +138,9 @@ public class App extends Application {
 
                     showGameDifficultyLevelSelect();
                 } else if (result.get() == gameGoBackBtn) {
-
-                    System.out.println("game start");
+                    this.game.GameGoBack();
                 } else if (result.get() == gameGoNextBtn) {
-
-                    System.out.println("game reset");
+                    this.game.GameGoNext();
                 }
                 else if (result.get() == cancelBtn){
                     alert.close();
