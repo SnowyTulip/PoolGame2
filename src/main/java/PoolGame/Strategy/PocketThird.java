@@ -1,6 +1,6 @@
 package PoolGame.Strategy;
 
-import PoolGame.Game;
+import PoolGame.GameObject.Game;
 import PoolGame.Items.Ball;
 
 /**

@@ -1,6 +1,6 @@
 package PoolGame.Strategy;
 
-import PoolGame.Game;
+import PoolGame.GameObject.Game;
 import PoolGame.Items.Ball;
 
 /** An interface for the action carried out when a ball falls into a pocket */

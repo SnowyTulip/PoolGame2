@@ -4,8 +4,7 @@ import java.util.*;
 
 import PoolGame.Config.PocketConfig;
 import PoolGame.Config.PocketsConfig;
-import PoolGame.Drawable;
-import PoolGame.Game;
+import PoolGame.GameObject.Game;
 import PoolGame.Config.TableConfig;
 import PoolGame.Items.Ball.BallType;
 import javafx.collections.ObservableList;

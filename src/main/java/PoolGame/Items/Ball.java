@@ -1,8 +1,6 @@
 package PoolGame.Items;
 
-import PoolGame.Drawable;
-import PoolGame.Game;
-import PoolGame.Movable;
+import PoolGame.GameObject.Game;
 import PoolGame.Strategy.BallPocketStrategy;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;

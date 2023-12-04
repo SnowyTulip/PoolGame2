@@ -1,0 +1,6 @@
+
+v	java:S135û"YReduce the total number of break and continue statements in this loop to use at most one.(¼‰Ÿ›8µåÊÃ1
+{
+java:S1450"YRemove the "colourName" field and declare it as a local variable in the relevant methods.(·Ç¾Şüÿÿÿÿ8÷åÊÃ1
+u
+java:S3776Î"RRefactor this method to reduce its Cognitive Complexity from 21 to the 15 allowed.(ûÕÙöşÿÿÿÿ8ıåÊÃ1

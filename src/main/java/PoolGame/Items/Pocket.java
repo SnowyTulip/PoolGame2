@@ -2,7 +2,6 @@ package PoolGame.Items;
 
 import PoolGame.Config.PocketConfig;
 import PoolGame.Config.PositionConfig;
-import PoolGame.Drawable;
 import javafx.collections.ObservableList;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;

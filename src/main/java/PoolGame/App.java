@@ -4,16 +4,15 @@
 package PoolGame;
 
 import java.io.File;
-import java.io.FilenameFilter;
 import java.io.IOException;
 import java.util.*;
 
 import PoolGame.Config.GameConfig;
+import PoolGame.GameObject.GameConfigReader;
+import PoolGame.GameObject.Game;
 import PoolGame.Items.Pocket;
 import PoolGame.Items.PoolTable;
-import PoolGame.Strategy.GameReset;
 import javafx.collections.FXCollections;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -21,18 +20,16 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import org.json.simple.parser.ParseException;
 
-import PoolGame.ConfigReader.ConfigKeyMissingException;
+import PoolGame.GameObject.GameConfigReader.ConfigKeyMissingException;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -212,13 +209,13 @@ public class App extends Application {
 
     private void LoadConfigs() {
         File directory = new File(configsPath);
-        ConfigReader configReader;
+        GameConfigReader gameConfigReader;
         for(GameDifficultyLevel level : configFileDict.keySet()){
             File configFile = new File(directory,configFileDict.get(level));
             if(configFile.exists()){
                 try {
-                    configReader = new ConfigReader(configFile.getPath(),false);
-                    this.gameConfigs.put(level,configReader.getConfig());
+                    gameConfigReader = new GameConfigReader(configFile.getPath(),false);
+                    this.gameConfigs.put(level, gameConfigReader.getConfig());
                 } catch (IOException | ConfigKeyMissingException | ParseException e) {
                     throw new RuntimeException(e);
                 }

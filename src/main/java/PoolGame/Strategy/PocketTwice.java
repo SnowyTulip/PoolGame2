@@ -1,6 +1,6 @@
 package PoolGame.Strategy;
 
-import PoolGame.Game;
+import PoolGame.GameObject.Game;
 import PoolGame.Items.Ball;
 
 /** Hide the ball once it falls into the pocket twice or spawn it back to its

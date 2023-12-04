@@ -1,15 +1,12 @@
 package PoolGame.Items;
 
-import PoolGame.Drawable;
 import javafx.collections.ObservableList;
 import javafx.geometry.Bounds;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Stop;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.transform.Rotate;
 
 /**
  * @projectName: Design_Pattern_Assignment_2
