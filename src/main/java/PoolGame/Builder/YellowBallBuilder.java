@@ -17,12 +17,14 @@ public class YellowBallBuilder implements BallBuilder{
 
     private BallType ballType = null;
     private BallPocketStrategy action = null;
+    private int scoreValue ;
     public YellowBallBuilder(){
         this.reset();
     }
-    public YellowBallBuilder(BallType type, BallPocketStrategy action) {
+    public YellowBallBuilder(BallType type, BallPocketStrategy action,int scoreValue) {
         this.ballType = type;
         this.action = action;
+        this.scoreValue = scoreValue;
         this.reset();
     }
     /**
@@ -38,6 +40,7 @@ public class YellowBallBuilder implements BallBuilder{
         if (this.action != null) {
             this.ball.setPocketAction(this.action);
         }
+        this.ball.setScoreValue(this.scoreValue);
     }
 
     /**

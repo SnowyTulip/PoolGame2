@@ -1,14 +1,14 @@
 
 w
-java:S14500"URemove the "colour" field and declare it as a local variable in the relevant methods.(İõõ’úÿÿÿÿ8†ìî‚Ã1
-]	java:S107D"AConstructor has 8 parameters, which is greater than 7 authorized.(ãÚ8„’™–Ã1
+java:S14501"URemove the "colour" field and declare it as a local variable in the relevant methods.(İõõ’úÿÿÿÿ8ğ¼Ã Ã1
+b	java:S107E"AConstructor has 9 parameters, which is greater than 7 authorized.(¼Ò“ úÿÿÿÿ8ñ¼Ã Ã1
 >
-java:S1116""Remove this empty statement.(ôŸìúÿÿÿÿ8ˆìî‚Ã1
+java:S1116#"Remove this empty statement.(ôŸìúÿÿÿÿ8ò¼Ã Ã1
 A
-java:S1659¹"#Declare "fVelY" on a separate line.(‚èÛ…8”ìî‚Ã1
+java:S1659Ã"#Declare "fVelY" on a separate line.(‚èÛ…8ü¼Ã Ã1
 B
-java:S1068"%Remove this unused "g" private field.(°”âÔ8•ìî‚Ã1
+java:S1068"%Remove this unused "g" private field.(°”âÔ8ı¼Ã Ã1
 M
-java:S1068("+Remove this unused "MIN_VEL" private field.(÷úßĞúÿÿÿÿ8•ìî‚Ã1
+java:S1068)"+Remove this unused "MIN_VEL" private field.(÷úßĞúÿÿÿÿ8ı¼Ã Ã1
 [
-java:S1144Ş"=Remove this unused private "calculateCueBallVelOnHit" method.(ÃåÁ¹8•ìî‚Ã1
+java:S1144è"=Remove this unused private "calculateCueBallVelOnHit" method.(ÃåÁ¹8ı¼Ã Ã1

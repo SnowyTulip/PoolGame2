@@ -365,3 +365,5 @@ i
 0src/main/java/PoolGame/GameObject/GameTimer.java,8\c\8c0b0d85616eb348716c239b6d6963650c38bf20
 `
 0src/main/java/PoolGame/Strategy/BallsScores.java,4\2\420bbbf371ece134e9e824797ce2c6d9d25500fc
+`
+0src/main/java/PoolGame/GameObject/GameScore.java,a\6\a6559c83249ac4a7a1ba5871f03392c2d76a5acd

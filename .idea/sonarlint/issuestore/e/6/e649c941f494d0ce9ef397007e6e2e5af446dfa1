@@ -1,10 +1,2 @@
 
-L	java:S1063"+Replace this use of System.err by a logger.( Ÿƒ²ıÿÿÿÿ8¿ÔèÃ1
-R
-java:S1128"0Remove this unused import 'javafx.geometry.Pos'.(ÌÆ÷Ùøÿÿÿÿ8’¿ŸÃ1
-Y
-java:S1128"7Remove this unused import 'javafx.scene.control.Label'.(ö²­ÿÿÿÿÿ8’¿ŸÃ1
-]
-java:S1128";Remove this unused import 'javafx.scene.layout.BorderPane'.(Îî¥üÿÿÿÿ8’¿ŸÃ1
-W
-java:S1128"5Remove this unused import 'javafx.scene.layout.Pane'.(êÄƒÄşÿÿÿÿ8’¿ŸÃ1
+L	java:S1060"+Replace this use of System.err by a logger.( Ÿƒ²ıÿÿÿÿ8şö¢Ã1

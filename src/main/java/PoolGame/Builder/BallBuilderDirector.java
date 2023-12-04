@@ -14,10 +14,22 @@ import PoolGame.Strategy.PocketTwice;
 /** The class that builds all the different balls */
 public class BallBuilderDirector {
     private Map<String, BallBuilder> builders;
+    private Map<String,Integer> ballsScoreValues;
 
     /** Initialise a ball builder director with no knowledge of how to build balls */
     public BallBuilderDirector() {
         this.builders = new HashMap<>();
+        this.ballsScoreValues = new HashMap<>();
+        this.ballsScoreValues.put("white",-99999);
+        this.ballsScoreValues.put("red",2);
+        this.ballsScoreValues.put("blue",1);
+        this.ballsScoreValues.put("yellow",2);
+        this.ballsScoreValues.put("orange",1);
+        this.ballsScoreValues.put("green",1);
+        this.ballsScoreValues.put("purple",1);
+        this.ballsScoreValues.put("black",1);
+        this.ballsScoreValues.put("brown",2);
+
     }
 
     /**
@@ -31,18 +43,18 @@ public class BallBuilderDirector {
 
     /** Register the defaults for the ball builder director. */
     public void registerDefault() {
-        this.register("white", new WhiteBallBuilder(BallType.CUEBALL, new GameReset()));
-        this.register("red", new RedBallBuilder(BallType.NORMALBALL, new PocketOnce()));
-        this.register("blue", new BlueBallBuilder(BallType.NORMALBALL, new PocketTwice()));
+        this.register("white", new WhiteBallBuilder(BallType.CUEBALL, new GameReset(),ballsScoreValues.get("white") ));
+        this.register("red", new RedBallBuilder(BallType.NORMALBALL, new PocketOnce() ,ballsScoreValues.get("red")));
+        this.register("blue", new BlueBallBuilder(BallType.NORMALBALL, new PocketTwice(),ballsScoreValues.get("blue")));
 
-        this.register("yellow", new YellowBallBuilder(BallType.NORMALBALL, new PocketOnce()));
-        this.register("orange", new OrangeBallBuilder(BallType.NORMALBALL, new PocketOnce()));
+        this.register("yellow", new YellowBallBuilder(BallType.NORMALBALL, new PocketOnce(),ballsScoreValues.get("yellow")));
+        this.register("orange", new OrangeBallBuilder(BallType.NORMALBALL, new PocketOnce(),ballsScoreValues.get("orange")));
 
-        this.register("green", new GreenBallBuilder(BallType.NORMALBALL, new PocketTwice()));
-        this.register("purple", new PurpleBallBuilder(BallType.NORMALBALL, new PocketTwice()));
+        this.register("green", new GreenBallBuilder(BallType.NORMALBALL, new PocketTwice(),ballsScoreValues.get("green")));
+        this.register("purple", new PurpleBallBuilder(BallType.NORMALBALL, new PocketTwice(),ballsScoreValues.get("purple")));
 
-        this.register("black", new BlackBallBuilder(BallType.NORMALBALL, new PocketThird()));
-        this.register("brown", new BrownBallBuilder(BallType.NORMALBALL, new PocketThird()));
+        this.register("black", new BlackBallBuilder(BallType.NORMALBALL, new PocketThird(),ballsScoreValues.get("black")));
+        this.register("brown", new BrownBallBuilder(BallType.NORMALBALL, new PocketThird(),ballsScoreValues.get("brown")));
     }
 
     /**

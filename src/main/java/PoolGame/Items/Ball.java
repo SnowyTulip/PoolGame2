@@ -22,6 +22,7 @@ public class Ball implements Drawable, Movable {
     private Circle mouseDashshape;
     private PoolCue ballCue;
     private double friction = 1.0;
+    private int scoreValue;
     private double g = 9.8;
     private double hitScale = 0.1;
 
@@ -65,7 +66,7 @@ public class Ball implements Drawable, Movable {
      * @param pocketAction The action to be carried out when a ball fall into a pocket
      * @throws IllegalArgumentException One of the provided value is invalid
      */
-    public Ball(String colour, double xPos, double yPos, double xVel, double yVel, double mass, BallType type, BallPocketStrategy pocketAction) throws IllegalArgumentException {
+    public Ball(String colour, double xPos, double yPos, double xVel, double yVel, double mass, BallType type, BallPocketStrategy pocketAction,int scoreValue) throws IllegalArgumentException {
         this.shape = new Circle(this.originalPos[0], this.originalPos[1], RADIUS);
         this.mouseDragLine = new Line();
         this.mouseDragLine.setVisible(false);
@@ -86,6 +87,7 @@ public class Ball implements Drawable, Movable {
         this.setMass(mass);
         this.setBallType(type);
         this.setPocketAction(pocketAction);
+        this.scoreValue = scoreValue;
     }
 
     /** 
@@ -103,6 +105,14 @@ public class Ball implements Drawable, Movable {
         this.mouseDashLine.getStrokeDashArray().addAll(5d,5d);
         this.mouseDashLine.setFill(Color.color(1,1,1));
         this.ballCue = new PoolCue();
+        this.scoreValue = 1;
+    }
+
+    public void setScoreValue(int value) {
+        this.scoreValue = value;
+    }
+    public int getScoreValue() {
+        return this.scoreValue;
     }
 
     /**
@@ -605,6 +615,7 @@ public class Ball implements Drawable, Movable {
      * @param game The instance of the game
      */
     public void fallIntoPocket(Game game) {
+        game.addScore(this.scoreValue);
         this.pocketAction.fallIntoPocket(game, this);
     }
 }

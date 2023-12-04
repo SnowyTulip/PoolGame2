@@ -9,12 +9,8 @@ import PoolGame.Config.GameConfig;
 import PoolGame.Items.Ball;
 import PoolGame.Items.PoolTable;
 import javafx.collections.ObservableList;
-import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
 /** The game class that runs the game */
@@ -27,6 +23,7 @@ public class Game {
         pause,running,
     }
     private GameTimer gameTimer;
+    private GameScore gameScore;
     private GameState state;
 
 
@@ -61,6 +58,7 @@ public class Game {
         this.gameTimer = new GameTimer();
         GameStart();
         this.counterManager = new GameCounterManager(this);
+        gameScore = new GameScore();
     }
     public GameCounterManager getGameCounterManager() {
         return counterManager;
@@ -100,8 +98,12 @@ public class Game {
         table.addToGroupPockets(groupChildren);
         groupChildren.add(this.winText);
         groupChildren.add(this.gameTimer.getNode());
+        groupChildren.add(this.gameScore.getNode());
         table.addToGroupBalls(groupChildren);
 
+    }
+    public void addScore(int score) {
+        this.gameScore.addScore(score);
     }
     public void setConfig(GameConfig config) {
         GamePause();
@@ -126,6 +128,7 @@ public class Game {
         this.shownWonText = false;
         this.table.reset();
         this.gameTimer.reset();
+        this.gameScore.reset();
         GameStart();
     }
     public boolean isAllowHitBall(){
