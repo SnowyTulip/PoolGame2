@@ -4,7 +4,7 @@
 
 [https://github.com/SnowyTulip/PoolGame2](https://github.com/SnowyTulip/PoolGame2)
 
-![1701783435576](https://file+.vscode-resource.vscode-cdn.net/c%3A/Users/pi/Desktop/PoolGame2/Design_Pattern_Assignment_2/image/README/1701783435576.png)
+![1701786633996](image/README/1701786633996.png)
 
 ## 命令说明
 
