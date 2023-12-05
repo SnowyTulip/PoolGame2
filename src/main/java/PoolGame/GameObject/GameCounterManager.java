@@ -14,7 +14,7 @@ import java.util.List;
  * @className: GameCounterManager
  * @author: pi
  * @description:     用来标记当前回合是否已经结束
- *     //从一次击球开始,到所有球都停下来记录为一个回合
+ *     从一次击球开始,到所有球都停下来记录为一个回合
  * @version: 1.0
  */
 public class GameCounterManager implements IGenGameSnapshot{

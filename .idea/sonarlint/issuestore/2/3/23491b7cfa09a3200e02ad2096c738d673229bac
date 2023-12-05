@@ -1,0 +1,13 @@
+
+
+java:S1130""xRemove the declaration of thrown exception 'java.io.FileNotFoundException' which is a subclass of 'java.io.IOException'.(ε™Ϊ
+“
+java:S11300"xRemove the declaration of thrown exception 'java.io.FileNotFoundException' which is a subclass of 'java.io.IOException'.(ΜΚ¨³ϊÿÿÿÿ
+“
+java:S1130C"xRemove the declaration of thrown exception 'java.io.FileNotFoundException' which is a subclass of 'java.io.IOException'.(τεϋ‘όÿÿÿÿ
+@
+java:S1197H"*Move the array designators [] to the type.(«Ϋιε
+“
+java:S1130r"xRemove the declaration of thrown exception 'java.io.FileNotFoundException' which is a subclass of 'java.io.IOException'.(Η§…ύÿÿÿÿ
+q
+java:S1128"TRemove this unnecessary import: same package classes are always implicitly imported.(χÒ›8ΤώΈªΓ1

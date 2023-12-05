@@ -7,7 +7,7 @@ import org.json.simple.JSONObject;
  * @package: PoolGame.Config
  * @className: PocketConfig
  * @author: pi
- * @description: 球洞的配置文件
+ * @description: 球洞的配置文件,这里是模仿ball的构建方法,它的上层构建类为PocketsConfig
  * @version: 1.0
  */
 public class PocketConfig implements Configurable{

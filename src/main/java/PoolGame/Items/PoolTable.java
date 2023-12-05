@@ -170,6 +170,11 @@ public class PoolTable implements Drawable , IGenGameSnapshot {
     public Ball getWhiteBall(){
         return this.whiteBall;
     }
+    public void addGameListener(Game game){
+        for (Ball ball : this.balls) {
+            ball.addGameListener(game);
+        }
+    }
 
     /**
      * Get all balls on table.

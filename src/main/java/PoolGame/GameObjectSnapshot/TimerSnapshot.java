@@ -5,7 +5,7 @@ package PoolGame.GameObjectSnapshot;
  * @package: PoolGame.GameObjectSnapshot
  * @className: TimerSnapshot
  * @author: pi
- * @description: 保存时间就行 ticks
+ * @description: 保存时间 ticks
  * @version: 1.0
  */
 public class TimerSnapshot extends GameObjectSnapshot{

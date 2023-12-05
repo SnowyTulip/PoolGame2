@@ -20,7 +20,7 @@ import java.time.LocalTime;
  * @package: PoolGame.GameObject
  * @className: GameTimer
  * @author: pi
- * @description: TODO
+ * @description: Game的计时器，包含时间显示的功能
  * @version: 1.0
  */
 public class GameTimer implements IGenGameSnapshot{

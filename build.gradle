@@ -19,7 +19,9 @@ repositories {
 tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"
 }
-
+javadoc {
+    options.encoding = "UTF-8"
+}
 javafx {
     version = "17.0.2"
     modules = ['javafx.controls','javafx.media']

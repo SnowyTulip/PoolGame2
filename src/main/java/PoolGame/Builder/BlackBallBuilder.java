@@ -4,14 +4,6 @@ import PoolGame.Items.Ball.BallType;
 import PoolGame.Items.Ball;
 import PoolGame.Strategy.BallPocketStrategy;
 
-/**
- * @projectName: Design_Pattern_Assignment_2
- * @package: PoolGame.Builder
- * @className: BlackBallBuilder
- * @author: pi
- * @description: TODO
- * @version: 1.0
- */
 public class BlackBallBuilder implements BallBuilder{
     private Ball ball;
 

@@ -1,7 +1,6 @@
 package PoolGame.GameObject;
 
 import PoolGame.GameObjectSnapshot.GameObjectSnapshot;
-import PoolGame.GameObjectSnapshot.GameSnapshot;
 import PoolGame.GameObjectSnapshot.ScoreSnapshot;
 import javafx.animation.PauseTransition;
 import javafx.collections.ObservableList;
@@ -17,7 +16,7 @@ import javafx.util.Duration;
  * @package: PoolGame.GameObject
  * @className: GameScore
  * @author: pi
- * @description: TODO
+ * @description: 控制Game的得分情况，包括得分显示
  * @version: 1.0
  */
 public class GameScore implements IGenGameSnapshot{
@@ -34,6 +33,7 @@ public class GameScore implements IGenGameSnapshot{
     }
     public void reset(){
         this.currentScore = 0;
+        this.updateScoreLabel();
     }
     public void addScore(int Score){
         this.gameScoreLabel.setText("得分:" + this.currentScore + "+" + Score);

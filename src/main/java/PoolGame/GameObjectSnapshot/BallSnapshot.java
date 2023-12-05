@@ -5,7 +5,7 @@ package PoolGame.GameObjectSnapshot;
  * @package: PoolGame.GameObjectSnapshot
  * @className: BallSnapshot
  * @author: pi
- * @description: TODO
+ * @description: 球的快照，即当前情况下球要保存的所有信息,ball可以产生此快照，也可以根据快照恢复状态
  * @version: 1.0
  */
 //对于球,需要存储位置、速度、入袋次数、是否被禁用

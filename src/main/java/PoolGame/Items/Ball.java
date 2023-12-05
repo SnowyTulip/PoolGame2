@@ -218,8 +218,8 @@ public class Ball implements Drawable, Movable, IGenGameSnapshot {
     }
 
     /**
-     * Check if a ball has 0 velocity.
-     * @return Returns true if a ball has 0 velocity, false otherwise
+     * 允许击球还需要经过game的同意,只有当前的game回合结束，才允许击球
+     * @return    是否允许击球
      */
     public boolean isAllowToHit() {
         boolean isAllow = false;
@@ -399,6 +399,9 @@ public class Ball implements Drawable, Movable, IGenGameSnapshot {
         this.fallCounter = 0;
         this.ballCue.reset();
     }
+    /**
+     * 生成预测球，这个球是白色虚线表示，用来提醒玩家，当前力度下打击球的预测位置
+     */
     private void genDashBall(ObservableList<Node> group){
         this.mouseDashshape = new Circle(0,0,RADIUS);
         this.mouseDashshape.setStrokeType(StrokeType.CENTERED);
@@ -411,6 +414,8 @@ public class Ball implements Drawable, Movable, IGenGameSnapshot {
     }
     /**
      * 缩放        Vx' = Vx / Max(Vel**0.5 , 1)
+     * @description: 不能让球杆击球的力度随距离线性增长,这样会导致非常难以操控 <br/>
+     * 因此这里需要对力度进行缩放,当打击力度小时，线性增长,力度变大后缓慢增长
      * @param Vel 总体速度 Vel = sqrt(Vx*Vx + Vy*Vy)
      * @param Vx  X方向速度
      * @return    缩放后的Vx‘
@@ -637,6 +642,19 @@ public class Ball implements Drawable, Movable, IGenGameSnapshot {
             }
         }
     }
+    public boolean hasWon() {
+        boolean won = true;
+        for (Ball ball : this.gameListener.getPoolTable().getBalls()) {
+            if (ball.getBallType() == BallType.CUEBALL) {
+                continue;
+            }
+            if (!ball.isDisabled()) {
+                won = false;
+                break;
+            }
+        }
+        return won;
+    }
 
     /**
      * Triggers the ball action for falling into a pocket.
@@ -645,5 +663,8 @@ public class Ball implements Drawable, Movable, IGenGameSnapshot {
     public void fallIntoPocket(Game game) {
         game.addScore(this.scoreValue);
         this.pocketAction.fallIntoPocket(game, this);
+        if(hasWon()){
+            this.gameListener.gameSuccess();
+        }
     }
 }

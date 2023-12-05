@@ -5,7 +5,7 @@ package PoolGame.GameObjectSnapshot;
  * @package: PoolGame.GameObjectSnapshot
  * @className: CounterSnapshot
  * @author: pi
- * @description: counter需要保存 就counter数
+ * @description: counter需要保存 就只需要保存counter数即可
  * @version: 1.0
  */
 public class CounterSnapshot extends GameObjectSnapshot{

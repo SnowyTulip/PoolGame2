@@ -10,7 +10,8 @@ import java.util.List;
  * @package: PoolGame.GameObjectSnapshot
  * @className: TableSnapshot
  * @author: pi
- * @description: TODO
+ * @description: 保存table的快照，实际上table只需要维护balls的信息<br/>
+ * 在恢复的时候也仅仅将table所持有的球的快照恢复即可
  * @version: 1.0
  */
 public class TableSnapshot extends GameObjectSnapshot{

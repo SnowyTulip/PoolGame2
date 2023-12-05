@@ -2,6 +2,7 @@ package PoolGame.GameObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import PoolGame.Builder.BallBuilderDirector;
 import PoolGame.Config.BallConfig;
@@ -10,12 +11,22 @@ import PoolGame.GameObjectSnapshot.GameObjectSnapshot;
 import PoolGame.GameObjectSnapshot.GameSnapshot;
 import PoolGame.Items.Ball;
 import PoolGame.Items.PoolTable;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.scene.Group;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.text.Text;
 
 /** The game class that runs the game */
+/**
+ * Game 对象  <br/>
+ * + 每个Game对象由config初始化  <br/>
+ * + 持有table、counterManager等GameObject <br/>
+ * + 游戏的回合由counterManager控制<br/>
+ * + 计时、分数等由gameTimer、gameScore控制<br/>
+ */
 public class Game implements IGenGameSnapshot{
     PoolTable table;
     private boolean shownWonText = false;
@@ -57,7 +68,7 @@ public class Game implements IGenGameSnapshot{
         this.winText.setVisible(false);
         this.winText.setX(table.getDimX() / 2.);
         this.winText.setY(table.getDimY() / 2.);
-        this.table.getWhiteBall().addGameListener(this);
+        this.table.addGameListener(this);
         this.gameTimer = new GameTimer();
         this.gameScore = new GameScore();
         GameStart();
@@ -137,6 +148,40 @@ public class Game implements IGenGameSnapshot{
         this.gameScore.reset();
         GameStart();
     }
+    public void gameOver(){
+        Platform.runLater(() -> {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("游戏失败");
+            alert.setHeaderText(null);
+            alert.setContentText("很遗憾，您失败了！");
+
+            ButtonType resetButton = new ButtonType("重新开始");
+            alert.getButtonTypes().setAll(resetButton);
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == resetButton) {
+                reset();
+            }
+        });
+
+    }
+    public void gameSuccess(){
+        Platform.runLater(() -> {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("游戏成功");
+            alert.setHeaderText(null);
+            alert.setContentText("恭喜您 , 您很厉害！");
+
+            ButtonType resetButton = new ButtonType("重新开始");
+            alert.getButtonTypes().setAll(resetButton);
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == resetButton) {
+                this.table.getWhiteBall().disable();
+                reset();
+            }
+        });
+    }
     public boolean isAllowHitBall(){
         boolean canHit = false;
         if(!this.counterManager.isCounterRunning())
@@ -147,11 +192,10 @@ public class Game implements IGenGameSnapshot{
     public void tick() {
 
         if (this.state == GameState.running) {
-            if (table.hasWon() && !this.shownWonText) {
-                //System.out.println(this.winText.getText());
-                this.winText.setVisible(true);
-                this.shownWonText = true;
-            }
+//            if (table.hasWon()) {
+//                //System.out.println(this.winText.getText());
+//                this.gameSuccess();
+//            }
             table.checkPocket(this);
             table.handleCollision();
             this.table.applyFrictionToBalls();

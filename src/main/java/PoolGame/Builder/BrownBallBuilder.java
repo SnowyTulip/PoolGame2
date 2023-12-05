@@ -9,7 +9,7 @@ import PoolGame.Strategy.BallPocketStrategy;
  * @package: PoolGame.Builder
  * @className: BrownBallBuilder
  * @author: pi
- * @description: TODO
+ * @description: 建立棕色球
  * @version: 1.0
  */
 public class BrownBallBuilder implements BallBuilder{

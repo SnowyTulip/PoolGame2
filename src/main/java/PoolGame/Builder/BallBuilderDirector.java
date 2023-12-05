@@ -6,17 +6,26 @@ import java.util.Map;
 import PoolGame.Config.BallConfig;
 import PoolGame.Items.Ball;
 import PoolGame.Items.Ball.BallType;
-import PoolGame.Strategy.GameReset;
-import PoolGame.Strategy.PocketOnce;
-import PoolGame.Strategy.PocketThird;
-import PoolGame.Strategy.PocketTwice;
+import PoolGame.Strategy.*;
 
 /** The class that builds all the different balls */
+/**
+ * @projectName: Design_Pattern_Assignment_2
+ * @package: PoolGame.Builder
+ * @className: BallBuilderDirector
+ * @author: pi
+ * @description: 构建球
+ * @version: 1.0
+ */
 public class BallBuilderDirector {
-    private Map<String, BallBuilder> builders;
-    private Map<String,Integer> ballsScoreValues;
+    private final Map<String, BallBuilder> builders;
+    private final Map<String,Integer> ballsScoreValues;
 
     /** Initialise a ball builder director with no knowledge of how to build balls */
+    /**
+     * 不仅注册球的builder
+     * 还需要为球设置它的分数占比,这个在构建的时候确定,存放在ballScoreValues中
+     */
     public BallBuilderDirector() {
         this.builders = new HashMap<>();
         this.ballsScoreValues = new HashMap<>();
@@ -43,7 +52,7 @@ public class BallBuilderDirector {
 
     /** Register the defaults for the ball builder director. */
     public void registerDefault() {
-        this.register("white", new WhiteBallBuilder(BallType.CUEBALL, new GameReset(),ballsScoreValues.get("white") ));
+        this.register("white", new WhiteBallBuilder(BallType.CUEBALL, new GameOver(),ballsScoreValues.get("white") ));
         this.register("red", new RedBallBuilder(BallType.NORMALBALL, new PocketOnce() ,ballsScoreValues.get("red")));
         this.register("blue", new BlueBallBuilder(BallType.NORMALBALL, new PocketTwice(),ballsScoreValues.get("blue")));
 

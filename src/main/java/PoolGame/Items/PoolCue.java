@@ -13,7 +13,9 @@ import javafx.scene.shape.Rectangle;
  * @package: PoolGame.Items
  * @className: PoolCue
  * @author: pi
- * @description: TODO
+ * @description: 击球球杆 包括球杆的图片:imageView <br/>
+ * 因为球杆击球似乎有一些bug,因此选择使用一个碰撞箱体对球进行碰撞
+ * 并且在接触到白球后停止运动，并将速度信息传递给球
  * @version: 1.0
  */
 public class PoolCue implements Drawable {

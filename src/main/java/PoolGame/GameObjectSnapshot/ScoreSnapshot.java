@@ -5,7 +5,7 @@ package PoolGame.GameObjectSnapshot;
  * @package: PoolGame.GameObjectSnapshot
  * @className: ScoreSnapshot
  * @author: pi
- * @description: 保存得分就行
+ * @description: 保存当前的得分
  * @version: 1.0
  */
 public class ScoreSnapshot extends GameObjectSnapshot{
