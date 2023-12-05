@@ -16,6 +16,9 @@ repositories {
     // Use Maven Central for resolving dependencies.
     mavenCentral()
 }
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
 
 javafx {
     version = "17.0.2"
