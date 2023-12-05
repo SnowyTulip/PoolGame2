@@ -1,0 +1,8 @@
+PoolGame
+PoolGame.Builder
+PoolGame.Config
+PoolGame.Factory
+PoolGame.GameObject
+PoolGame.GameObjectSnapshot
+PoolGame.Items
+PoolGame.Strategy
