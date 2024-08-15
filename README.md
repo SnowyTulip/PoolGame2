@@ -6,6 +6,10 @@
 
 ![1701786633996](image/README/1701786633996.png)
 
+## 使用声明
+
+遵循开源协议 [WTFPL](https://zh.wikipedia.org/wiki/WTFPL)
+
 ## 命令说明
 
 - 运行 `gradle run` 将使用 `resources` 文件夹中的默认配置文件。使用 `gradle run --args="${CONFIG_PATH}"` 来加载自定义配置文件。
